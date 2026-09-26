@@ -12,7 +12,7 @@ export function PipelineScene({ step }: { step: number }) {
           {index < count - 1 && <span aria-hidden="true">↓</span>}
         </motion.div>
       ))}
-      {step === 2 && <p>Une carte pédagogique : le vrai calcul interne est plus complexe et ne se déroule pas comme une simple ligne.</p>}
+      {step === 2 && <p>Ce schéma simplifie le calcul réel : il ne se déroule pas comme une simple ligne.</p>}
     </div>
   );
 }
