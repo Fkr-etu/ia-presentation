@@ -134,3 +134,10 @@
 .tokens-example{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:28px;font-size:clamp(20px,2.4vw,30px);font-weight:850}
 .tokens-example code{padding:10px 14px;background:#171717;color:#fff;border-radius:10px;font-size:.8em}
 @media(max-width:800px){.scene-pipeline-mini span{padding:11px 14px}.scene-pipeline-mini span:not(:last-child)::after{margin-left:10px}.token-chip{padding:10px 13px}.tokens-example{gap:10px}}
+
+
+/* Presentation exit control */
+.presentation__exit{position:fixed;z-index:30;top:20px;left:50%;transform:translateX(-50%);padding:9px 15px;border:1px solid #171717;background:#fffdf8;color:#171717;border-radius:999px;cursor:pointer;font-size:11px;font-weight:850;letter-spacing:.04em;box-shadow:0 6px 18px #17171712;transition:background-color .2s ease,color .2s ease,transform .2s ease,box-shadow .2s ease}
+.presentation__exit:hover{background:#171717;color:#fff;box-shadow:0 9px 24px #17171720;transform:translateX(-50%) translateY(-1px)}
+.presentation__exit:focus-visible{outline:3px solid #3557ff;outline-offset:3px}
+@media(max-width:800px){.presentation__exit{top:14px;padding:8px 12px;font-size:10px}}
