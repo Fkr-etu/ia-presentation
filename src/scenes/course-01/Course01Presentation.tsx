@@ -19,7 +19,7 @@ export function Course01Presentation({ onExit }: { onExit: () => void }) {
     if (!document.fullscreenElement) await document.documentElement.requestFullscreen();
     else await document.exitFullscreen();
   }, []);
-  usePresentationKeyboard({ next:p.next, previous:p.previous, restart:p.restart, toggleMap:()=>setMapOpen(v=>!v), toggleFullscreen });
+  usePresentationKeyboard({ next:p.next, previous:p.previous, restart:p.restart, toggleMap:()=>setMapOpen(v=>!v), toggleFullscreen, exit:onExit });
   const renderScene = () => {
     switch (p.state.sceneId) {
       case "intro": return <IntroScene step={p.state.stepIndex}/>;
@@ -33,7 +33,7 @@ export function Course01Presentation({ onExit }: { onExit: () => void }) {
       case "synthesis": return <SynthesisScene step={p.state.stepIndex}/>;
     }
   };
-  return <PresentationShell scene={p.scene} sceneIndex={p.state.sceneIndex} stepIndex={p.state.stepIndex} totalScenes={p.scenes.length} mapOpen={mapOpen} onCloseMap={()=>setMapOpen(false)}>
+  return <PresentationShell scene={p.scene} sceneIndex={p.state.sceneIndex} stepIndex={p.state.stepIndex} totalScenes={p.scenes.length} mapOpen={mapOpen} onCloseMap={()=>setMapOpen(false)} onSelectScene={p.goToScene}>
     <button className="presentation__exit" type="button" onClick={onExit}>Quitter</button>{renderScene()}
   </PresentationShell>;
 }
