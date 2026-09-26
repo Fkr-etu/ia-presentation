@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { usePresentation } from "../../presentation/engine/usePresentation";
 import { usePresentationKeyboard } from "../../presentation/input/usePresentationKeyboard";
 import { PresentationShell } from "../../presentation/components/PresentationShell";
@@ -21,6 +21,13 @@ export function Course01Presentation({ onExit }: { onExit: () => void }) {
     else await document.exitFullscreen();
   }, []);
   usePresentationKeyboard({ next:p.next, previous:p.previous, restart:p.restart, toggleMap:()=>setMapOpen(v=>!v), toggleFullscreen, exit:onExit });
+
+  useEffect(() => {
+    document.body.dataset.presentation = "true";
+    return () => {
+      delete document.body.dataset.presentation;
+    };
+  }, []);
   const renderScene = () => {
     switch (p.state.sceneId) {
       case "intro": return <IntroScene step={p.state.stepIndex}/>;
