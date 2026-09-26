@@ -28,10 +28,10 @@ jobs:
         run: npm run build
 
       - name: Install Chromium
-        run: npx playwright@1.56.1 install --with-deps chromium
+        run: npx playwright install --with-deps chromium
 
       - name: Run visual QA
-        run: npx playwright@1.56.1 test qa/visual
+        run: npm run qa:visual
 
       - name: Upload visual artifacts
         if: always()
