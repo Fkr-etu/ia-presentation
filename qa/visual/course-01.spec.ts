@@ -1,16 +1,16 @@
 import { test, expect } from "@playwright/test";
 
 const scenes = [
-  { title: "La question", steps: 4 },
+  { title: "La question", steps: 3 },
   { title: "Le voyage d’une question", steps: 3 },
-  { title: "Les tokens", steps: 3 },
-  { title: "Les embeddings", steps: 5 },
+  { title: "Les tokens", steps: 2 },
+  { title: "Les embeddings", steps: 4 },
   { title: "L’attention", steps: 4 },
-  { title: "Le Transformer", steps: 4 },
-  { title: "La génération", steps: 5 },
+  { title: "Le Transformer", steps: 3 },
+  { title: "La génération", steps: 3 },
   { title: "À vous de jouer", steps: 4 },
   { title: "Le piège du plausible", steps: 3 },
-  { title: "Tout remettre ensemble", steps: 3 },
+  { title: "Du texte à la réponse", steps: 2 },
 ];
 
 test("Course 01 — parcours visuel complet en 16:9", async ({ page }) => {
@@ -65,10 +65,10 @@ test("Course 01 — navigation clavier et plan", async ({ page }) => {
   await page.getByRole("article").filter({ hasText: "Comprendre l’IA" }).getByRole("button", { name: /Explorer le cours/i }).click();
 
   await page.keyboard.press("ArrowRight");
-  await expect(page.locator(".presentation__controls")).toContainText("Étape 2 / 4");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 2 / 3");
 
   await page.keyboard.press("r");
-  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 4");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 3");
 
   await page.keyboard.press("m");
   await expect(page.getByRole("complementary", { name: "Plan du cours" })).toBeVisible();

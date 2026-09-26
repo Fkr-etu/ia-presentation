@@ -12,21 +12,19 @@ const stages = [
 ];
 
 export function SynthesisScene({ step }: { step: number }) {
-  const count = step === 0 ? 2 : step === 1 ? 5 : stages.length;
-
-  return (
+    return (
     <div className="scene-synthesis">
       <div className="synthesis-flow" aria-label="Synthèse du parcours">
-        {stages.slice(0, count).map((stage, index) => (
+        {stages.map((stage, index) => (
           <motion.span key={stage} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: index * 0.06 }}>
             {stage}
           </motion.span>
         ))}
       </div>
-      {step >= 2 && (
+      {step >= 1 && (
         <div className="synthesis-final">
-          <strong>Il transforme le contexte en représentations utiles.</strong>
-          <strong>Puis il génère progressivement une suite de tokens.</strong>
+          <strong>Le modèle transforme le contexte en représentations utiles.</strong>
+          <strong>Puis il génère progressivement la suite de tokens.</strong>
           <em>Alors, une IA pense-t-elle comme nous ?</em>
         </div>
       )}
