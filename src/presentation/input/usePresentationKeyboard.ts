@@ -13,7 +13,8 @@ export function usePresentationKeyboard(actions: Actions) {
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (
-        /event.target instanceof HTMLInputElement ||\n        event.target instanceof HTMLTextAreaElement/
+        event.target instanceof HTMLInputElement ||
+        event.target instanceof HTMLTextAreaElement
       ) return;
 
       switch (event.key) {
