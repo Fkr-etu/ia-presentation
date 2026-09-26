@@ -31,7 +31,7 @@ export function GenerationScene({ step }: { step: number }) {
               <span key={item.label}>{item.label}<b>{item.value}</b></span>
             ))}
           </div>
-          <p className="generation-choice__note">Ces probabilités sont illustratives : le modèle attribue des scores aux tokens candidats puis en sélectionne un.</p>
+          <p className="generation-choice__note">Ces probabilités sont illustratives. Le modèle produit une distribution sur les tokens candidats, puis une stratégie de décodage détermine lequel est retenu.</p>
         </motion.div>
       )}
 
