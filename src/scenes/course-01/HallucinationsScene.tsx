@@ -11,8 +11,12 @@ export function HallucinationsScene({ step }: { step: number }) {
       )}
       {step >= 2 && (
         <div className="hallucination-verdict-block">
-          <p className="hallucination-verdict">Cette réponse est inventée.</p>
-          <p className="hallucination-bridge">Le modèle peut produire une réponse fluide sans disposer d’une information fiable. Pour vérifier un fait, on peut lui apporter des sources ou des outils.</p>
+          <p className="hallucination-verdict">Le piège est dans la question.</p>
+          <p className="hallucination-bridge">
+            La prémisse est fictive : il n’existe pas de ville fondée sur Mars en 1987.
+            Un modèle peut pourtant produire une réponse fluide et plausible au lieu de signaler que la prémisse est fausse.
+            Pour vérifier un fait, on peut lui apporter des sources ou des outils.
+          </p>
         </div>
       )}
     </div>
