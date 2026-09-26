@@ -7,7 +7,7 @@ export function EmbeddingsScene({ step }: { step: number }) {
       {step === 0 && (
         <motion.div className="embedding-intro" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}>
           <span className="embedding-word">ciel</span>
-          <p>Comment transformer ce token en quelque chose qu’un réseau neuronal peut manipuler ?</p>
+          <p>Comment transformer ce token en une représentation qu’un réseau neuronal peut manipuler ?</p>
         </motion.div>
       )}
 
