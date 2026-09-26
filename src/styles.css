@@ -153,13 +153,15 @@
 .scene-simulation{width:100%;max-width:1120px}
 .simulation-prompt{margin:0 0 30px;font-size:clamp(48px,7vw,92px);line-height:.95;letter-spacing:-.07em;font-weight:900}
 .simulation-options{display:flex;flex-wrap:wrap;gap:12px}
-.simulation-options button{min-width:150px;padding:16px 22px;border:2px solid var(--color-ink);background:var(--color-paper-bright);border-radius:999px;font:inherit;font-size:18px;font-weight:900;cursor:default}
-.simulation-options button.is-selected{background:var(--color-lime);box-shadow:8px 8px 0 var(--color-ink)}
+.simulation-option{min-width:150px;padding:16px 22px;border:2px solid var(--color-ink);background:var(--color-paper-bright);border-radius:999px;font:inherit;font-size:18px;font-weight:900;cursor:default}
+.simulation-option.is-selected{background:var(--color-lime);box-shadow:8px 8px 0 var(--color-ink)}
+.simulation-instruction{max-width:850px;margin:28px 0 0;color:var(--color-muted);font-size:clamp(20px,2.2vw,28px);line-height:1.35}
+.simulation-option{display:inline-block;text-align:center}
 .simulation-result{display:grid;grid-template-columns:auto auto;gap:10px 20px;max-width:420px;margin-top:30px;padding:20px 22px;border:1px solid var(--ink-22);border-radius:18px;background:var(--color-paper-bright)}
 .simulation-result span{font-size:18px;font-weight:850}.simulation-result b{font-size:18px;text-align:right}
 .simulation-message,.simulation-choice{max-width:850px;margin:26px 0 0;color:var(--color-muted);font-size:clamp(20px,2.2vw,28px);line-height:1.35}
 .simulation-choice strong{color:var(--color-ink)}
-@media(max-width:800px){.simulation-options button{min-width:120px;padding:13px 17px;font-size:16px}}
+@media(max-width:800px){.simulation-option{min-width:120px;padding:13px 17px;font-size:16px}}
 
 /* Hallucination and synthesis */
 .scene-hallucinations,.scene-synthesis{width:100%;max-width:1120px}
