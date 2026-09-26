@@ -35,7 +35,7 @@ export function SimulationScene({ step }: { step: number }) {
 
       {step >= 2 && (
         <p className="simulation-message">
-          Le contexte influence la distribution des probabilités : les candidats ne partent pas tous avec le même poids.
+          Le contexte influence la distribution des probabilités : les candidats n’ont pas tous le même poids dans cette distribution.
         </p>
       )}
 
