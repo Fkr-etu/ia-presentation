@@ -33,16 +33,18 @@ export function PresentationShell({
         <span>{String(sceneIndex + 1).padStart(2, "0")} / {String(totalScenes).padStart(2, "0")}</span>
       </header>
 
-      <motion.section
-        key={scene.id}
-        className="presentation__scene"
-        initial={{ opacity: 0, y: 18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.35, ease: "easeOut" }}
-      >
+      <section className="presentation__scene">
         <div className="presentation__scene-label">{scene.title}</div>
-        {children}
-      </motion.section>
+        <motion.div
+          key={scene.id}
+          className="presentation__scene-content"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
+        >
+          {children}
+        </motion.div>
+      </section>
 
       <footer className="presentation__controls" aria-label="Contrôles">
         <span>← / →</span>
