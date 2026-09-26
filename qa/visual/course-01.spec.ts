@@ -74,7 +74,7 @@ test("Course 01 — navigation clavier et plan", async ({ page }) => {
   await expect(page.getByRole("complementary", { name: "Plan du cours" })).toBeVisible();
 
   const sceneButtons = page.getByRole("complementary").getByRole("button");
-  await expect(sceneButtons).toHaveCount(10);
+  await expect(sceneButtons).toHaveCount(11);
 
   await page.getByRole("button", { name: "Les embeddings", exact: true }).click();
   await expect(page.locator(".presentation__scene-label")).toHaveText("Les embeddings");
