@@ -1,22 +1,7 @@
 import { motion } from "motion/react";
 import { EmbeddingSpace3D } from "./EmbeddingSpace3D";
 
-mport { motion } from "motion/react";
-import { EmbeddingSpace3D } from "./EmbeddingSpace3D";
-
-const points = [
-  { label: "ciel", x: 8, y: -4, z: 1, related: true },
-  { label: "nuage", x: 2, y: -8, z: 5, related: true },
-  { label: "pluie", x: 13, y: 5, z: 3, related: true },
-  { label: "soleil", x: 20, y: -7, z: -2, related: true },
-  { label: "chat", x: -14, y: 8, z: 2, related: false },
-  { label: "chien", x: -8, y: 14, z: -4, related: false },
-  { label: "voiture", x: -18, y: -2, z: -6, related: false },
-];
-
 export function EmbeddingsScene({ step }: { step: number }) {
-  const rotation = step >= 3 ? -8 : 0;
-
   return (
     <div className="scene-embeddings">
       {step === 0 && (
