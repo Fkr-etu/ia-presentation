@@ -51,3 +51,21 @@
 .generation-probs b{margin-left:7px;color:#3557ff}
 .scene-generation>p{max-width:850px;margin:0;color:#68615a;font-size:16px;line-height:1.5}
 @media(max-width:800px){.scene-intro{min-height:320px}.scene-intro h1{font-size:clamp(44px,12vw,72px)}.scene-pipeline__stage{min-height:48px;padding:10px 14px}.generation-line{font-size:clamp(44px,12vw,72px)}}
+
+/* Attention visualization */
+.scene-attention{width:100%;max-width:1120px}
+.attention-stage{width:100%;margin:8px 0 26px;overflow:visible}
+.attention-graph{display:block;width:100%;height:auto;overflow:visible}
+.attention-graph__label{fill:#68615a;font-size:16px;font-weight:850;letter-spacing:.12em;text-transform:uppercase}
+.attention-graph__link{fill:none;stroke:#ff5d3d;stroke-width:4;stroke-linecap:round;marker-end:url(#attention-arrow)}
+.attention-graph__link--strong{stroke:#171717;stroke-width:8}
+.attention-graph marker path{fill:#ff5d3d}
+.attention-token rect{fill:#fffdf8;stroke:#17171722;stroke-width:2}
+.attention-token text{fill:#171717;font-size:20px;font-weight:800}
+.attention-token.is-target rect{fill:#e7f24a;stroke:#171717;stroke-width:3}
+.attention-prompt,.attention-explanation{max-width:900px;margin:0;color:#68615a;font-size:clamp(20px,2.3vw,30px);line-height:1.35}
+.attention-transfer{display:flex;align-items:center;gap:18px;margin-top:28px;font-size:clamp(20px,2.2vw,28px);font-weight:850}
+.attention-transfer span:first-child{padding:10px 15px;background:#e7f24a;border-radius:999px}
+.attention-transfer b{color:#ff5d3d}
+@media(max-width:800px){.attention-stage{margin-top:0;overflow-x:auto}.attention-graph{min-width:980px}.attention-prompt,.attention-explanation{font-size:20px}}
+@media(prefers-reduced-motion:reduce){.attention-graph__link{animation:none}}
