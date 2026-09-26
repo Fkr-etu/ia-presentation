@@ -25,8 +25,8 @@ export function SynthesisScene({ step }: { step: number }) {
       </div>
       {step >= 2 && (
         <div className="synthesis-final">
-          <strong>Il transforme le contexte en représentations utiles.</strong>
-          <strong>Puis il génère progressivement une suite de tokens.</strong>
+          <strong>Le modèle transforme le contexte en représentations utiles.</strong>
+          <strong>Puis il génère progressivement la suite de tokens.</strong>
           <em>Alors, une IA pense-t-elle comme nous ?</em>
         </div>
       )}
