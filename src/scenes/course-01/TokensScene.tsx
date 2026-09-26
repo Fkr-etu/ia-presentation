@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 
 const sentence = ["Un", "modèle", "ne", "pense", "pas", "."];
-const fragments = ["incroy", "able"];
 
 export function TokensScene({ step }: { step: number }) {
   return (
