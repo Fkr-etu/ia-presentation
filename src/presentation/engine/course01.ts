@@ -10,7 +10,7 @@ export const COURSE_01_SCENES: PresentationScene[] = [
   { id: "generation", title: "La génération", steps: 5, render: () => null },
   { id: "simulation", title: "À vous de jouer", steps: 4 },
   { id: "hallucinations", title: "Le piège du plausible", steps: 3 },
-  { id: "synthesis", title: "Tout remettre ensemble", steps: 3 },
+  { id: "synthesis", title: "Du texte à la réponse", steps: 3 },
 ];
 
 export function sceneIdAt(index: number): PresentationSceneId {
