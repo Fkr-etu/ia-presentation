@@ -6,7 +6,7 @@ const scenes = [
   { title: "Les tokens", steps: 3 },
   { title: "Les embeddings", steps: 5 },
   { title: "L’attention", steps: 4 },
-  { title: "Le Transformer", steps: 3 },
+  { title: "Le Transformer", steps: 4 },
   { title: "La génération", steps: 5 },
   { title: "À vous de jouer", steps: 4 },
   { title: "Le piège du plausible", steps: 3 },
