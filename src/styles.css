@@ -94,3 +94,15 @@
 .generation-choice__title{margin:0 0 14px!important;color:#171717!important;font-size:12px!important;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
 .generation-choice__note{margin:16px 0 0!important;font-size:15px!important;line-height:1.45}
 @media(max-width:800px){.generation-stage{min-height:160px}}
+
+/* Generation simulation */
+.scene-simulation{width:100%;max-width:1120px}
+.simulation-prompt{margin:0 0 30px;font-size:clamp(48px,7vw,92px);line-height:.95;letter-spacing:-.07em;font-weight:900}
+.simulation-options{display:flex;flex-wrap:wrap;gap:12px}
+.simulation-options button{min-width:150px;padding:16px 22px;border:2px solid #171717;background:#fffdf8;border-radius:999px;font:inherit;font-size:18px;font-weight:900;cursor:default}
+.simulation-options button.is-selected{background:#e7f24a;box-shadow:8px 8px 0 #171717}
+.simulation-result{display:grid;grid-template-columns:auto auto;gap:10px 20px;max-width:420px;margin-top:30px;padding:20px 22px;border:1px solid #17171722;border-radius:18px;background:#fffdf8}
+.simulation-result span{font-size:18px;font-weight:850}.simulation-result b{font-size:18px;text-align:right}
+.simulation-message,.simulation-choice{max-width:850px;margin:26px 0 0;color:#68615a;font-size:clamp(20px,2.2vw,28px);line-height:1.35}
+.simulation-choice strong{color:#171717}
+@media(max-width:800px){.simulation-options button{min-width:120px;padding:13px 17px;font-size:16px}}
