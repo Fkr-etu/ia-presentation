@@ -25,7 +25,7 @@ export function GenerationScene({ step }: { step: number }) {
 
       {step >= 4 && (
         <motion.div className="generation-choice" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
-          <p className="generation-choice__title">Prochain token possible</p>
+          <p className="generation-choice__title">Prochains tokens possibles</p>
           <div className="generation-probs">
             {next.map((item) => (
               <span key={item.label}>{item.label}<b>{item.value}</b></span>
