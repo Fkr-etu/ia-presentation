@@ -4,6 +4,7 @@ import { usePresentationKeyboard } from "../../presentation/input/usePresentatio
 import { PresentationShell } from "../../presentation/components/PresentationShell";
 import { IntroScene } from "./IntroScene";
 import { PipelineScene } from "./PipelineScene";
+import { TokensScene } from "./TokensScene";
 import { EmbeddingsScene } from "./EmbeddingsScene";
 import { GenerationScene } from "./GenerationScene";
 import { AttentionScene } from "./AttentionScene";
@@ -24,6 +25,7 @@ export function Course01Presentation({ onExit }: { onExit: () => void }) {
     switch (p.state.sceneId) {
       case "intro": return <IntroScene step={p.state.stepIndex}/>;
       case "pipeline": return <PipelineScene step={p.state.stepIndex}/>;
+      case "tokens": return <TokensScene step={p.state.stepIndex}/>;
       case "embeddings": return <EmbeddingsScene step={p.state.stepIndex}/>;
       case "attention": return <AttentionScene step={p.state.stepIndex}/>;
       case "transformer": return <TransformerScene step={p.state.stepIndex}/>;
