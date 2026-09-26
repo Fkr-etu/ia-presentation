@@ -8,7 +8,7 @@ const next = [
 ];
 
 export function GenerationScene({ step }: { step: number }) {
-  const visible = Math.min(tokens.length, step + 1);
+  const visible = step === 0 ? 1 : tokens.length;
 
   return (
     <div className="scene-generation">
@@ -19,11 +19,11 @@ export function GenerationScene({ step }: { step: number }) {
               {token}
             </motion.span>
           ))}
-          {step >= 4 && <motion.span className="generation-cursor" initial={{ opacity: 0 }} animate={{ opacity: [0, 1, 0] }} transition={{ repeat: Infinity, duration: 1.1 }}>▌</motion.span>}
+          {step >= 1 && <motion.span className="generation-cursor" initial={{ opacity: 0 }} animate={{ opacity: [0, 1, 0] }} transition={{ repeat: Infinity, duration: 1.1 }}>▌</motion.span>}
         </div>
       </div>
 
-      {step >= 4 && (
+      {step >= 2 && (
         <motion.div className="generation-choice" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
           <p className="generation-choice__title">Distribution illustrative du prochain token</p>
           <div className="generation-probs">
@@ -35,11 +35,11 @@ export function GenerationScene({ step }: { step: number }) {
         </motion.div>
       )}
 
-      {step >= 4 ? null : step >= 3 ? (
+      {step === 1 ? (
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           La génération se fait token après token. Après chaque token, le modèle recalcule la suite possible à partir du nouveau contexte.
         </motion.p>
-      ) : null}
+       ) : null}
     </div>
   );
 }
