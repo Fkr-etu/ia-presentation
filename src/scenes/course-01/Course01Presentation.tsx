@@ -6,46 +6,34 @@ import { IntroScene } from "./IntroScene";
 import { PipelineScene } from "./PipelineScene";
 import { EmbeddingsScene } from "./EmbeddingsScene";
 import { GenerationScene } from "./GenerationScene";
+import { AttentionScene } from "./AttentionScene";
+import { TransformerScene } from "./TransformerScene";
+import { SimulationScene } from "./SimulationScene";
+import { HallucinationsScene } from "./HallucinationsScene";
+import { SynthesisScene } from "./SynthesisScene";
 
 export function Course01Presentation({ onExit }: { onExit: () => void }) {
-  const presentation = usePresentation();
+  const p = usePresentation();
   const [mapOpen, setMapOpen] = useState(false);
-
   const toggleFullscreen = useCallback(async () => {
     if (!document.fullscreenElement) await document.documentElement.requestFullscreen();
     else await document.exitFullscreen();
   }, []);
-
-  usePresentationKeyboard({
-    next: presentation.next,
-    previous: presentation.previous,
-    restart: presentation.restart,
-    toggleMap: () => setMapOpen((open) => !open),
-    toggleFullscreen,
-  });
-
+  usePresentationKeyboard({ next:p.next, previous:p.previous, restart:p.restart, toggleMap:()=>setMapOpen(v=>!v), toggleFullscreen });
   const renderScene = () => {
-    switch (presentation.state.sceneId) {
-      case "intro": return <IntroScene step={presentation.state.stepIndex} />;
-      case "pipeline": return <PipelineScene step={presentation.state.stepIndex} />;
-      case "embeddings": return <EmbeddingsScene step={presentation.state.stepIndex} />;
-      case "generation": return <GenerationScene step={presentation.state.stepIndex} />;
-      default:
-        return <div className="scene-placeholder"><span>Scène en construction</span><small>{presentation.scene.title}</small></div>;
+    switch (p.state.sceneId) {
+      case "intro": return <IntroScene step={p.state.stepIndex}/>;
+      case "pipeline": return <PipelineScene step={p.state.stepIndex}/>;
+      case "embeddings": return <EmbeddingsScene step={p.state.stepIndex}/>;
+      case "attention": return <AttentionScene step={p.state.stepIndex}/>;
+      case "transformer": return <TransformerScene step={p.state.stepIndex}/>;
+      case "generation": return <GenerationScene step={p.state.stepIndex}/>;
+      case "simulation": return <SimulationScene step={p.state.stepIndex}/>;
+      case "hallucinations": return <HallucinationsScene step={p.state.stepIndex}/>;
+      case "synthesis": return <SynthesisScene step={p.state.stepIndex}/>;
     }
   };
-
-  return (
-    <PresentationShell
-      scene={presentation.scene}
-      sceneIndex={presentation.state.sceneIndex}
-      stepIndex={presentation.state.stepIndex}
-      totalScenes={presentation.scenes.length}
-      mapOpen={mapOpen}
-      onCloseMap={() => setMapOpen(false)}
-    >
-      <button className="presentation__exit" type="button" onClick={onExit}>Quitter</button>
-      {renderScene()}
-    </PresentationShell>
-  );
+  return <PresentationShell scene={p.scene} sceneIndex={p.state.sceneIndex} stepIndex={p.state.stepIndex} totalScenes={p.scenes.length} mapOpen={mapOpen} onCloseMap={()=>setMapOpen(false)}>
+    <button className="presentation__exit" type="button" onClick={onExit}>Quitter</button>{renderScene()}
+  </PresentationShell>;
 }
