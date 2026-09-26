@@ -17,7 +17,7 @@ export function AttentionScene({ step }: { step: number }) {
               <path d="M 0 0 L 10 5 L 0 10 z" />
             </marker>
           </defs>
-          <text x="550" y="48" className="attention-graph__label">contexte</text>
+          <text x="550" y="48" className="attention-graph__label">relations illustratives</text>
           {step >= 2 && relations.map((relation, index) => {
             const x = 72 + relation.from * 96;
             const targetX = 72 + 7 * 96;
@@ -50,7 +50,7 @@ export function AttentionScene({ step }: { step: number }) {
       {step === 0 && <p className="scene-question">À quoi renvoie « il » ?</p>}
       {step === 1 && <motion.p className="attention-prompt" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>Le modèle doit mettre « il » en relation avec le contexte.</motion.p>}
       {step >= 2 && <motion.p className="attention-explanation" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>Les relations ne sont pas toutes pondérées de la même façon : certaines informations du contexte comptent davantage pour la représentation courante.</motion.p>}
-      {step >= 3 && <motion.div className="attention-transfer" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}><span>« 10 ans »</span><b>→</b><span>contexte de la réponse</span></motion.div>}
+      {step >= 3 && <motion.div className="attention-transfer" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}><span>« comme si j’avais 10 ans »</span><b>→</b><span>contexte utile pour la réponse</span></motion.div>}
     </div>
   );
 }

@@ -8,13 +8,22 @@ export function SimulationScene({ step }: { step: number }) {
   return (
     <div className="scene-simulation">
       <p className="simulation-prompt">Le ciel est souvent…</p>
-      <div className="simulation-options" aria-label="Choisir un prochain token">
+      <div className="simulation-options" aria-label="Candidats au prochain token">
         {options.map((option) => (
-          <button key={option} type="button" className={selected === option ? "is-selected" : ""}>
+          <span
+            key={option}
+            className={selected === option ? "simulation-option is-selected" : "simulation-option"}
+          >
             {option}
-          </button>
+          </span>
         ))}
       </div>
+
+      {step === 0 && (
+        <p className="simulation-instruction">
+          Regardez les trois candidats. Lequel vous paraît le plus probable ?
+        </p>
+      )}
 
       {step >= 1 && (
         <motion.div className="simulation-result" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}>
@@ -24,8 +33,17 @@ export function SimulationScene({ step }: { step: number }) {
         </motion.div>
       )}
 
-      {step >= 2 && <p className="simulation-message">Le contexte influence la distribution des probabilités : les candidats ne partent pas tous avec le même poids.</p>}
-      {step >= 3 && <p className="simulation-choice">Dans cette simulation, le token retenu est <strong>BLEU</strong>.</p>}
+      {step >= 2 && (
+        <p className="simulation-message">
+          Le contexte influence la distribution des probabilités : les candidats ne partent pas tous avec le même poids.
+        </p>
+      )}
+
+      {step >= 3 && (
+        <p className="simulation-choice">
+          Dans cette simulation, le token retenu est <strong>BLEU</strong>. Le modèle recommence ensuite avec le nouveau contexte.
+        </p>
+      )}
     </div>
   );
 }
