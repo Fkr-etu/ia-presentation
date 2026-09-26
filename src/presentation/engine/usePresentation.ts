@@ -18,7 +18,11 @@ export function usePresentation() {
         return { ...current, stepIndex: current.stepIndex + 1 };
       }
 
-      const nextSceneIndex = Math.min(current.sceneIndex + 1, COURSE_01_SCENES.length - 1);
+      if (current.sceneIndex === COURSE_01_SCENES.length - 1) {
+        return current;
+      }
+
+      const nextSceneIndex = current.sceneIndex + 1;
       return {
         sceneIndex: nextSceneIndex,
         stepIndex: 0,
