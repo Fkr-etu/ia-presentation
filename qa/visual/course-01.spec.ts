@@ -15,7 +15,7 @@ const scenes = [
 
 test("Course 01 — parcours visuel complet en 16:9", async ({ page }) => {
   await page.goto("./");
-  await page.getByRole("button", { name: /Explorer le cours/i }).click();
+  await page.getByRole("article").filter({ hasText: "Comprendre l’IA" }).getByRole("button", { name: /Explorer le cours/i }).click();
 
   for (let sceneIndex = 0; sceneIndex < scenes.length; sceneIndex += 1) {
     const scene = scenes[sceneIndex];
@@ -61,7 +61,7 @@ test("Course 01 — parcours visuel complet en 16:9", async ({ page }) => {
 
 test("Course 01 — navigation clavier et plan", async ({ page }) => {
   await page.goto("./");
-  await page.getByRole("button", { name: /Explorer le cours/i }).click();
+  await page.getByRole("article").filter({ hasText: "Comprendre l’IA" }).getByRole("button", { name: /Explorer le cours/i }).click();
 
   await page.keyboard.press("ArrowRight");
   await expect(page.locator(".presentation__controls")).toContainText("Étape 2 / 4");
