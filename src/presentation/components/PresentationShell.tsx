@@ -41,7 +41,7 @@ export function PresentationShell({
         transition={{ duration: 0.35, ease: "easeOut" }}
       >
         <div className="presentation__scene-label">{scene.title}</div>
-        {children}
+        <div className="presentation__scene-content">{children}</div>
       </motion.section>
 
       <footer className="presentation__controls" aria-label="Contrôles">
