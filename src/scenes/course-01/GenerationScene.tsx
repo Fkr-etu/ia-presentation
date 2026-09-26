@@ -25,7 +25,7 @@ export function GenerationScene({ step }: { step: number }) {
 
       {step >= 4 && (
         <motion.div className="generation-choice" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
-          <p className="generation-choice__title">Prochain token possible</p>
+          <p className="generation-choice__title">Distribution illustrative du prochain token</p>
           <div className="generation-probs">
             {next.map((item) => (
               <span key={item.label}>{item.label}<b>{item.value}</b></span>
@@ -37,7 +37,7 @@ export function GenerationScene({ step }: { step: number }) {
 
       {step >= 4 ? null : step >= 3 ? (
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          La génération se fait token après token. Le modèle recalcule une distribution pour choisir la suite.
+          La génération se fait token après token. Après chaque token, le modèle recalcule la suite possible à partir du nouveau contexte.
         </motion.p>
       ) : null}
     </div>
