@@ -24,7 +24,7 @@ export function SimulationScene({ step }: { step: number }) {
         </motion.div>
       )}
 
-      {step >= 2 && <p className="simulation-message">Le contexte influence la distribution des probabilités : les candidats ne partent pas tous avec le même poids.</p>}
+      {step >= 2 && <p className="simulation-message">Le contexte influence la distribution des probabilités : les candidats n’ont pas tous le même poids dans cette distribution.</p>}
       {step >= 3 && <p className="simulation-choice">Dans cette simulation, le token retenu est <strong>BLEU</strong>.</p>}
     </div>
   );
