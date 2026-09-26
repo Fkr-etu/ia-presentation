@@ -1,4 +1,8 @@
 import { motion } from "motion/react";
+import { EmbeddingSpace3D } from "./EmbeddingSpace3D";
+
+mport { motion } from "motion/react";
+import { EmbeddingSpace3D } from "./EmbeddingSpace3D";
 
 const points = [
   { label: "ciel", x: 8, y: -4, z: 1, related: true },
@@ -57,42 +61,15 @@ export function EmbeddingsScene({ step }: { step: number }) {
       )}
 
       {step >= 3 && (
-        <div
-          className="embedding-stage"
-          aria-label="Projection pédagogique d’un espace d’embeddings"
-        >
-          <div
-            className="embedding-space embedding-space--3d"
-            style={{ transform: `rotateX(58deg) rotateZ(${rotation}deg)` }}
-          >
-            <span className="embedding-axis embedding-axis--x" />
-            <span className="embedding-axis embedding-axis--y" />
-            <span className="embedding-axis embedding-axis--z" />
-            {points.map((point, index) => (
-              <motion.div
-                key={point.label}
-                className={`embedding-point-3d ${step >= 3 && point.related ? "is-related" : ""}`}
-                style={{
-                  left: `${50 + point.x}%`,
-                  top: `${50 + point.y}%`,
-                  transform: `translateZ(${point.z * 9}px)`,
-                }}
-                initial={{ opacity: 0, scale: 0.4 }}
-                animate={{ opacity: 1, scale: step >= 3 && point.related ? 1.12 : 1 }}
-                transition={{ delay: index * 0.06, duration: 0.35 }}
-              >
-                {point.label}
-              </motion.div>
-            ))}
-          </div>
-
+        <div className="embedding-stage embedding-stage--immersive">
+          <EmbeddingSpace3D step={step} />
           {step === 3 && (
             <motion.div
               className="embedding-cluster-label"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              une projection pour voir les relations
+              une projection pédagogique d’un espace de grande dimension
             </motion.div>
           )}
         </div>
