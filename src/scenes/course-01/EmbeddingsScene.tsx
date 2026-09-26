@@ -52,7 +52,7 @@ export function EmbeddingsScene({ step }: { step: number }) {
           <div className="embedding-relation-node embedding-relation-node--cloud">nuage</div>
           <div className="embedding-relation-node embedding-relation-node--rain">pluie</div>
           <div className="embedding-relation-node embedding-relation-node--sun">soleil</div>
-          <span className="embedding-relation-label">des positions numériques peuvent capturer des relations</span>
+          <span className="embedding-relation-label">pendant l’entraînement, ces représentations sont ajustées pour rendre certaines relations utiles au modèle</span>
         </motion.div>
       )}
 
