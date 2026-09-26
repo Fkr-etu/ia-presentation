@@ -8,7 +8,7 @@ const layers = [
 ];
 
 export function TransformerScene({ step }: { step: number }) {
-  const count = Math.min(layers.length, step + 2);
+  const count = step === 0 ? 2 : layers.length;
 
   return (
     <div className="scene-transformer">
@@ -23,8 +23,8 @@ export function TransformerScene({ step }: { step: number }) {
         </div>
         <div className="transformer-flow" aria-hidden="true"><span>entrée</span><i /><span>sortie</span></div>
       </div>
-      {step >= 2 && <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>Le Transformer enchaîne ces transformations pour construire des représentations de plus en plus utiles à la tâche.</motion.p>}
-      {step >= 3 && <motion.div className="transformer-note" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}><b>À retenir</b><span>Le Transformer est une architecture : l’attention est l’un de ses mécanismes.</span></motion.div>}
+      {step >= 1 && <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>Le Transformer enchaîne ces transformations pour construire des représentations de plus en plus utiles à la tâche.</motion.p>}
+      {step >= 2 && <motion.div className="transformer-note" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}><b>À retenir</b><span>Le Transformer est une architecture : l’attention est l’un de ses mécanismes.</span></motion.div>}
     </div>
   );
 }
