@@ -41,7 +41,16 @@ export function usePresentation() {
     });
   }, []);
 
-  const goToScene = useCallback((sceneIndex: number) => {\n    const nextSceneIndex = Math.max(0, Math.min(sceneIndex, COURSE_01_SCENES.length - 1));\n    setState({ sceneIndex: nextSceneIndex, stepIndex: 0, sceneId: sceneIdAt(nextSceneIndex) });\n  }, []);\n\n  const restart = useCallback(() => {
+  const goToScene = useCallback((sceneIndex: number) => {
+    const nextSceneIndex = Math.max(0, Math.min(sceneIndex, COURSE_01_SCENES.length - 1));
+    setState({
+      sceneIndex: nextSceneIndex,
+      stepIndex: 0,
+      sceneId: sceneIdAt(nextSceneIndex),
+    });
+  }, []);
+
+  const restart = useCallback(() => {
     setState((current) => ({ ...current, stepIndex: 0 }));
   }, []);
 
