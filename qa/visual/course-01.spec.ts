@@ -22,7 +22,8 @@ test("Course 01 — parcours visuel complet en 16:9", async ({ page }) => {
 
     if (sceneIndex > 0) {
       await page.keyboard.press("m");
-      await page.getByRole("button", { name: scene.title, exact: true }).click();
+      await expect(page.getByRole("complementary", { name: "Plan du cours" })).toBeVisible();
+      await page.getByRole("complementary", { name: "Plan du cours" }).getByRole("button", { name: scene.title, exact: true }).click();
     }
 
     await expect(page.locator(".presentation__scene-label")).toHaveText(scene.title);
