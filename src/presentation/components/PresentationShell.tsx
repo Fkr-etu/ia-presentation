@@ -8,7 +8,8 @@ type Props = {
   stepIndex: number;
   totalScenes: number;
   mapOpen: boolean;
-  onCloseMap: () => void;\n  onSelectScene: (sceneIndex: number) => void;
+  onCloseMap: () => void;
+  onSelectScene: (sceneIndex: number) => void;
   children: ReactNode;
 };
 
