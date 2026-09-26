@@ -19,6 +19,7 @@ export function PresentationShell({
   totalScenes,
   mapOpen,
   onCloseMap,
+  onSelectScene,
   children,
 }: Props) {
   return (
