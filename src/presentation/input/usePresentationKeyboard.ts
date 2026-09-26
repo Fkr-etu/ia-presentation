@@ -12,7 +12,10 @@ type Actions = {
 export function usePresentationKeyboard(actions: Actions) {
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return;
+      if (
+        event.target instanceof HTMLInputElement ||
+        event.target instanceof HTMLTextAreaElement
+      ) return;
 
       switch (event.key) {
         case "ArrowRight":
@@ -45,7 +48,7 @@ export function usePresentationKeyboard(actions: Actions) {
       }
     };
 
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    window.addEventListener("keydown", onKeyDown, { capture: true });
+    return () => window.removeEventListener("keydown", onKeyDown, { capture: true });
   }, [actions]);
 }

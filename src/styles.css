@@ -120,3 +120,17 @@
 .synthesis-final strong{font-size:clamp(26px,3vw,42px);line-height:1.05;letter-spacing:-.05em}
 .synthesis-final em{margin-top:24px;font-size:clamp(32px,4.5vw,64px);line-height:.98;letter-spacing:-.06em;font-weight:900}
 @media(max-width:800px){.hallucination-answer{margin-top:28px}.synthesis-flow span{padding:11px 14px}.synthesis-flow span:not(:last-child)::after{margin-left:12px}}
+
+
+/* Tokens scene + intro reveal */
+.scene-pipeline-mini{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;max-width:1000px;margin:auto}
+.scene-pipeline-mini span{padding:14px 18px;border:1px solid #17171722;border-radius:999px;background:#fffdf8;font-size:clamp(18px,2.2vw,28px);font-weight:850;box-shadow:0 8px 22px #1717170a}
+.scene-pipeline-mini span:not(:last-child)::after{content:"→";margin-left:16px;color:#ff5d3d}
+.scene-tokens{width:100%;max-width:1120px}
+.tokens-sentence{display:flex;flex-wrap:wrap;gap:12px;max-width:1000px;font-size:clamp(40px,5.5vw,76px);line-height:1;letter-spacing:-.06em;font-weight:900}
+.token-chip{padding:12px 16px;border:2px solid #17171722;border-radius:16px;background:#fffdf8}
+.token-chip.is-fragment{background:#e7f24a;border-color:#171717}
+.token-fragment-note{max-width:820px;margin:30px 0 0;color:#68615a;font-size:clamp(20px,2.2vw,28px);line-height:1.35}
+.tokens-example{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:28px;font-size:clamp(20px,2.4vw,30px);font-weight:850}
+.tokens-example code{padding:10px 14px;background:#171717;color:#fff;border-radius:10px;font-size:.8em}
+@media(max-width:800px){.scene-pipeline-mini span{padding:11px 14px}.scene-pipeline-mini span:not(:last-child)::after{margin-left:10px}.token-chip{padding:10px 13px}.tokens-example{gap:10px}}

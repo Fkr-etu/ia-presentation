@@ -8,7 +8,7 @@ const next = [
 ];
 
 export function GenerationScene({ step }: { step: number }) {
-  const visible = Math.min(tokens.length, Math.max(1, step));
+  const visible = Math.min(tokens.length, step + 1);
 
   return (
     <div className="scene-generation">
@@ -35,11 +35,11 @@ export function GenerationScene({ step }: { step: number }) {
         </motion.div>
       )}
 
-      {step >= 3 && step < 4 && (
+      {step >= 4 ? null : step >= 3 ? (
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           La génération se fait token après token. Le modèle recalcule une distribution pour choisir la suite.
         </motion.p>
-      )}
+      ) : null}
     </div>
   );
 }
