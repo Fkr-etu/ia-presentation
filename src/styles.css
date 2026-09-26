@@ -106,3 +106,17 @@
 .simulation-message,.simulation-choice{max-width:850px;margin:26px 0 0;color:#68615a;font-size:clamp(20px,2.2vw,28px);line-height:1.35}
 .simulation-choice strong{color:#171717}
 @media(max-width:800px){.simulation-options button{min-width:120px;padding:13px 17px;font-size:16px}}
+
+/* Hallucination and synthesis */
+.scene-hallucinations,.scene-synthesis{width:100%;max-width:1120px}
+.hallucination-question{max-width:1000px;margin:0;font-size:clamp(42px,5.8vw,82px);line-height:.98;letter-spacing:-.065em;font-weight:900}
+.hallucination-answer{display:inline-block;margin-top:42px;padding:20px 26px;background:#fffdf8;border:2px solid #171717;border-radius:18px;font-size:clamp(30px,4vw,56px);font-weight:900;letter-spacing:-.05em;box-shadow:12px 12px 0 #ff5d3d}
+.hallucination-verdict{margin:42px 0 0;font-size:clamp(26px,3.2vw,44px);font-weight:900;letter-spacing:-.045em}
+.hallucination-bridge{max-width:850px;margin:16px 0 0;color:#68615a;font-size:clamp(18px,2vw,25px);line-height:1.4}
+.synthesis-flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;max-width:1080px}
+.synthesis-flow span{padding:14px 18px;border:1px solid #17171722;border-radius:999px;background:#fffdf8;font-size:clamp(16px,2vw,22px);font-weight:850}
+.synthesis-flow span:not(:last-child)::after{content:"→";margin-left:18px;color:#ff5d3d}
+.synthesis-final{display:grid;gap:16px;max-width:900px;margin-top:46px}
+.synthesis-final strong{font-size:clamp(26px,3vw,42px);line-height:1.05;letter-spacing:-.05em}
+.synthesis-final em{margin-top:24px;font-size:clamp(32px,4.5vw,64px);line-height:.98;letter-spacing:-.06em;font-weight:900}
+@media(max-width:800px){.hallucination-answer{margin-top:28px}.synthesis-flow span{padding:11px 14px}.synthesis-flow span:not(:last-child)::after{margin-left:12px}}
