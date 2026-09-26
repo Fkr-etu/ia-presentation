@@ -30,3 +30,24 @@
 .presentation__map>span:nth-child(2){color:#68615a;font-size:14px}
 @media(max-width:800px){.presentation__topbar{padding:18px 20px}.presentation__scene{width:min(100% - 36px,680px);padding:36px 0}.presentation__controls{padding:16px 20px;font-size:10px}.presentation__controls span:last-child{display:none}.presentation__map{inset:5% 4%;padding:24px}}
 @media(prefers-reduced-motion:reduce){.presentation__grain{display:none}}
+
+/* Course scene primitives */
+.scene-intro,.scene-pipeline,.scene-generation{width:100%;max-width:1120px}
+.scene-intro{min-height:390px;display:flex;flex-direction:column;justify-content:center}
+.scene-kicker{margin:0 0 28px;color:#ff5d3d;font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+.scene-intro h1{max-width:1080px;margin:0;font-size:clamp(54px,7vw,104px);line-height:.92;letter-spacing:-.07em;font-weight:900}
+.scene-intro .scene-question{margin:38px 0 0;font-size:clamp(24px,3vw,38px);font-weight:700;letter-spacing:-.035em}
+.scene-pipeline{display:grid;gap:8px}
+.scene-pipeline__stage{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;min-height:58px;padding:13px 20px;border:1px solid #17171720;border-radius:12px;background:#fffdf8}
+.scene-pipeline__stage strong{font-size:clamp(20px,2.6vw,34px);letter-spacing:-.045em}
+.scene-pipeline__stage span{padding-left:20px;font-size:22px;color:#ff5d3d}
+.scene-pipeline>p{max-width:850px;margin:24px 0 0;color:#68615a;font-size:16px;line-height:1.5}
+.scene-generation{display:grid;gap:34px}
+.generation-line{display:flex;align-items:baseline;gap:.22em;flex-wrap:wrap;font-size:clamp(52px,7vw,104px);line-height:1;letter-spacing:-.07em;font-weight:900}
+.generation-line span{display:inline-block}
+.generation-cursor{color:#ff5d3d;font-size:.8em}
+.generation-probs{display:flex;flex-wrap:wrap;gap:10px}
+.generation-probs span{padding:13px 17px;border:1px solid #17171722;border-radius:999px;background:#fffdf8;font-size:15px;font-weight:750}
+.generation-probs b{margin-left:7px;color:#3557ff}
+.scene-generation>p{max-width:850px;margin:0;color:#68615a;font-size:16px;line-height:1.5}
+@media(max-width:800px){.scene-intro{min-height:320px}.scene-intro h1{font-size:clamp(44px,12vw,72px)}.scene-pipeline__stage{min-height:48px;padding:10px 14px}.generation-line{font-size:clamp(44px,12vw,72px)}}
