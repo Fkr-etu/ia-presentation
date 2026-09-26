@@ -22,7 +22,7 @@ export function EmbeddingsScene({ step }: { step: number }) {
           animate={{ opacity: 1, y: 0 }}
         >
           <span className="embedding-word">ciel</span>
-          <p>Comment transformer ce token en quelque chose qu’un réseau neuronal peut manipuler ?</p>
+          <p>Comment transformer ce token en une représentation qu’un réseau neuronal peut manipuler ?</p>
         </motion.div>
       )}
 
@@ -52,7 +52,7 @@ export function EmbeddingsScene({ step }: { step: number }) {
           <div className="embedding-relation-node embedding-relation-node--cloud">nuage</div>
           <div className="embedding-relation-node embedding-relation-node--rain">pluie</div>
           <div className="embedding-relation-node embedding-relation-node--sun">soleil</div>
-          <span className="embedding-relation-label">pendant l’entraînement, ces représentations sont ajustées pour rendre certaines relations utiles au modèle</span>
+          <span className="embedding-relation-label">Pendant l’entraînement, ces représentations sont ajustées pour rendre certaines relations utiles au modèle</span>
         </motion.div>
       )}
 
