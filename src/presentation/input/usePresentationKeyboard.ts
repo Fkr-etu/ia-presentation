@@ -12,7 +12,11 @@ type Actions = {
 export function usePresentationKeyboard(actions: Actions) {
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return;
+      if (
+        event.target instanceof HTMLInputElement ||
+        event.target instanceof HTMLTextAreaElement ||
+        event.target instanceof HTMLButtonElement
+      ) return;
 
       switch (event.key) {
         case "ArrowRight":
