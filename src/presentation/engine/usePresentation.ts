@@ -61,5 +61,6 @@ export function usePresentation() {
     next,
     previous,
     restart,
-  }), [state, scene, next, previous, restart]);
+    goToScene,
+  }), [state, scene, next, previous, restart, goToScene]);
 }
