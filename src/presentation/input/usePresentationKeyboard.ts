@@ -5,7 +5,8 @@ type Actions = {
   previous: () => void;
   restart: () => void;
   toggleMap: () => void;
-  toggleFullscreen: () => void;\n  exit: () => void;
+  toggleFullscreen: () => void;
+  exit: () => void;
 };
 
 export function usePresentationKeyboard(actions: Actions) {
@@ -35,6 +36,9 @@ export function usePresentationKeyboard(actions: Actions) {
         case "f":
         case "F":
           actions.toggleFullscreen();
+          break;
+        case "Escape":
+          actions.exit();
           break;
         default:
           break;
