@@ -21,6 +21,7 @@ test("Course 01 — parcours visuel complet en 16:9", async ({ page }) => {
     const scene = scenes[sceneIndex];
 
     if (sceneIndex > 0) {
+      await page.keyboard.press("m");
       await page.getByRole("button", { name: scene.title, exact: true }).click();
     }
 
