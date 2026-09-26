@@ -66,6 +66,7 @@ export function PresentationShell({
                 type="button"
                 className={index === sceneIndex ? "is-current" : ""}
                 aria-current={index === sceneIndex ? "step" : undefined}
+                aria-label={item.title}
                 onClick={() => onSelectScene(index)}
               >
                 <span>{String(index + 1).padStart(2, "0")}</span>
