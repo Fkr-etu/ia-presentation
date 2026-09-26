@@ -28,6 +28,7 @@ test("Course 01 — parcours visuel complet en 16:9", async ({ page }) => {
 
     await expect(page.locator(".presentation__scene-label")).toHaveText(scene.title);
     await expect(page.locator(".presentation__scene")).toBeVisible();
+    await expect(page.locator(".presentation__scene-label")).toHaveText(scene.title);
 
     for (let step = 0; step < scene.steps; step += 1) {
       await expect.poll(() => page.evaluate(() => ({
