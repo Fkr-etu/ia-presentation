@@ -24,6 +24,14 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
+      - name: Validate repository contract
+        run: |
+          test -f AGENTS.md
+          grep -q "## Non-negotiable architecture" AGENTS.md
+          grep -q "## CSS rules" AGENTS.md
+          grep -q "## QA and validation" AGENTS.md
+          grep -q "## Definition of Done" AGENTS.md
+
       - name: Build
         run: npm run build
 
