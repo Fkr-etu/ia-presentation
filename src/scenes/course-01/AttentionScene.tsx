@@ -48,8 +48,8 @@ export function AttentionScene({ step }: { step: number }) {
         </svg>
       </div>
       {step === 0 && <p className="scene-question">À quoi renvoie « il » ?</p>}
-      {step === 1 && <motion.p className="attention-prompt" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>Le modèle doit mettre « il » en relation avec le contexte.</motion.p>}
-      {step >= 2 && <motion.p className="attention-explanation" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>Les relations ne sont pas toutes pondérées de la même façon : certaines informations du contexte comptent davantage pour la représentation courante.</motion.p>}
+      {step === 1 && <motion.p className="attention-prompt" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>Le modèle doit relier « il » aux éléments pertinents du contexte.</motion.p>}
+      {step >= 2 && <motion.p className="attention-explanation" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>Les relations ne sont pas toutes pondérées de la même façon : certaines informations du contexte comptent davantage dans la représentation en cours de calcul.</motion.p>}
       {step >= 3 && <motion.div className="attention-transfer" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}><span>« 10 ans »</span><b>→</b><span>contexte de la réponse</span></motion.div>}
     </div>
   );
