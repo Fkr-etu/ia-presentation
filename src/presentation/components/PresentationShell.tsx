@@ -7,6 +7,7 @@ type Props = {
   sceneIndex: number;
   stepIndex: number;
   totalScenes: number;
+  scenes: PresentationScene[];
   mapOpen: boolean;
   onCloseMap: () => void;
   onSelectScene: (sceneIndex: number) => void;
@@ -18,6 +19,7 @@ export function PresentationShell({
   sceneIndex,
   stepIndex,
   totalScenes,
+  scenes,
   mapOpen,
   onCloseMap,
   onSelectScene,
@@ -49,10 +51,29 @@ export function PresentationShell({
       </footer>
 
       {mapOpen && (
-        <button className="presentation__map" type="button" onClick={onCloseMap} aria-label="Fermer le plan">
-          <span className="presentation__map-title">Le parcours</span>
-          <span>10 scènes · 1 idée à la fois</span>
-        </button>
+        <aside className="presentation__map" aria-label="Plan du cours">
+          <div className="presentation__map-head">
+            <div>
+              <span className="presentation__map-title">Le parcours</span>
+              <span>10 scènes · 1 idée à la fois</span>
+            </div>
+            <button type="button" onClick={onCloseMap} aria-label="Fermer le plan">×</button>
+          </div>
+          <div className="presentation__map-list">
+            {scenes.map((item, index) => (
+              <button
+                key={item.id}
+                type="button"
+                className={index === sceneIndex ? "is-current" : ""}
+                aria-current={index === sceneIndex ? "step" : undefined}
+                onClick={() => onSelectScene(index)}
+              >
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{item.title}</strong>
+              </button>
+            ))}
+          </div>
+        </aside>
       )}
     </main>
   );
