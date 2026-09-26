@@ -127,15 +127,30 @@ export function EmbeddingSpace3D({ step }: { step: number }) {
     const animate = () => {
       const elapsed = clock.getElapsedTime();
       const motionAmount = reducedMotion ? 0 : 1;
+      const reveal = reducedMotion ? 1 : Math.min(1, elapsed / 1.2);
+      const easedReveal = 1 - Math.pow(1 - reveal, 3);
       const targetRotation = step >= 3 ? -0.16 : 0;
+      const targetCameraZ = step >= 3 ? 5.2 : 6.5;
+
       world.rotation.y += ((targetRotation + Math.sin(elapsed * 0.35) * 0.08 * motionAmount) - world.rotation.y) * 0.025;
       world.rotation.x += ((0.28 + Math.sin(elapsed * 0.28) * 0.035 * motionAmount) - world.rotation.x) * 0.025;
+      camera.position.z += (targetCameraZ - camera.position.z) * 0.035;
+      camera.position.y += ((0.45 - easedReveal * 0.18) - camera.position.y) * 0.035;
+      group.scale.setScalar(0.72 + easedReveal * 0.28);
 
       pointObjects.forEach(({ mesh, label, point }, index) => {
         const pulse = reducedMotion ? 0 : Math.sin(elapsed * 2.1 + index) * 0.025;
-        const scale = (step >= 3 && point.related ? 1.18 : 1) + pulse;
-        mesh.scale.setScalar(scale);
-        if (label) label.material.opacity = point.related ? 0.95 : 0.58;
+        const baseScale = point.related ? 1.18 : 1;
+        const scale = baseScale * easedReveal + pulse;
+        mesh.scale.setScalar(Math.max(0.02, scale));
+        if (label) {
+          label.material.opacity = (point.related ? 0.95 : 0.48) * easedReveal;
+        }
+      });
+
+      lines.children.forEach((line) => {
+        const material = (line as THREE.Line).material as THREE.LineBasicMaterial;
+        material.opacity = 0.28 * easedReveal;
       });
 
       frameRef.current += 1;
