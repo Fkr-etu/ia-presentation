@@ -26,7 +26,7 @@ export function EmbeddingsScene({ step }: { step: number }) {
 
       {step === 2 && (
         <motion.div className="embedding-stage embedding-stage--immersive" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <EmbeddingSpace3D step={0} />
+          <EmbeddingSpace3D step={3} />
           <div className="embedding-cluster-label">projection pédagogique</div>
           <div className="lesson-overlay-card"><strong>Les représentations apprises</strong><span>permettent au réseau de calculer sur des régularités présentes dans les données.</span></div>
         </motion.div>
@@ -34,7 +34,7 @@ export function EmbeddingsScene({ step }: { step: number }) {
 
       {step === 3 && (
         <motion.div className="embedding-stage embedding-stage--immersive" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <EmbeddingSpace3D step={1} />
+          <EmbeddingSpace3D step={4} />
           <div className="lesson-overlay-card lesson-overlay-card--bottom"><strong>Une proximité n’est pas une définition.</strong><span>Les relations visibles ici sont une simplification pédagogique, pas une carte exacte du « sens » des mots.</span></div>
         </motion.div>
       )}
