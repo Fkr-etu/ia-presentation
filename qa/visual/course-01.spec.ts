@@ -36,9 +36,19 @@ async function getOverflowDiagnostics(page: Page) {
 
     const presentationRect = presentation.getBoundingClientRect();
     const contentRect = content.getBoundingClientRect();
+    const contentRects = [content, ...content.querySelectorAll("*")].map((element) => element.getBoundingClientRect());
+    const contentBounds = contentRects.reduce(
+      (bounds, rect) => ({
+        left: Math.min(bounds.left, rect.left),
+        right: Math.max(bounds.right, rect.right),
+        top: Math.min(bounds.top, rect.top),
+        bottom: Math.max(bounds.bottom, rect.bottom),
+      }),
+      { left: Number.POSITIVE_INFINITY, right: Number.NEGATIVE_INFINITY, top: Number.POSITIVE_INFINITY, bottom: Number.NEGATIVE_INFINITY },
+    );
     const visualOverflow = {
-      horizontal: Math.max(0, presentationRect.left - contentRect.left, contentRect.right - presentationRect.right),
-      vertical: Math.max(0, presentationRect.top - contentRect.top, contentRect.bottom - presentationRect.bottom),
+      horizontal: Math.max(0, presentationRect.left - contentBounds.left, contentBounds.right - presentationRect.right),
+      vertical: Math.max(0, presentationRect.top - contentBounds.top, contentBounds.bottom - presentationRect.bottom),
     };
 
     const documentMetrics = {
