@@ -200,3 +200,65 @@
 /* 3D embedding visualization */
 .embedding-stage--immersive{min-height:540px}.embedding-space-3d{width:100%;height:520px;position:relative}.embedding-space-3d canvas{display:block;width:100%;height:100%}
 @media(max-width:800px){.embedding-stage--immersive{min-height:390px}.embedding-space-3d{height:370px}}
+
+
+/* Pedagogical V2: every presentation state carries its core lesson. */
+.lesson-frame{width:100%;max-width:1120px}
+.lesson-frame--hero{min-height:420px;display:flex;flex-direction:column;justify-content:center}
+.lesson-frame--final{display:grid;gap:28px}
+.lesson-kicker{display:block;margin-bottom:20px;color:var(--color-coral-strong);font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}
+.lesson-title{max-width:1050px;margin:0 0 34px;font-size:clamp(38px,5vw,72px);line-height:.94;letter-spacing:-.065em;font-weight:900}
+.lesson-lead{max-width:900px;margin:0;font-size:clamp(30px,4vw,58px);line-height:1.02;letter-spacing:-.055em;font-weight:850}
+.lesson-callout{display:grid;gap:7px;max-width:900px;margin-top:26px;padding:18px 22px;border-left:5px solid var(--color-blue);background:var(--color-paper-bright)}
+.lesson-callout strong,.lesson-content-panel>strong{font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.lesson-callout span,.lesson-content-panel p{color:var(--color-muted);font-size:clamp(17px,1.8vw,22px);line-height:1.42}
+.lesson-explanation{max-width:900px;margin:24px 0 0;color:var(--color-muted);font-size:18px;line-height:1.5}
+.lesson-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+.lesson-grid--two{grid-template-columns:repeat(2,1fr)}
+.lesson-grid>div{display:grid;gap:7px;padding:18px 20px;border:1px solid var(--ink-18);border-radius:16px;background:var(--color-paper-bright)}
+.lesson-grid strong{font-size:18px;letter-spacing:-.025em}
+.lesson-grid span{color:var(--color-muted);font-size:15px;line-height:1.4}
+.lesson-takeaway{max-width:920px;margin-top:26px;padding:15px 20px;border-radius:12px;background:var(--color-ink);color:#fff;font-size:17px;line-height:1.4}
+.lesson-takeaway b{color:var(--color-lime)}
+.lesson-frame--inset{margin-top:26px;padding:22px 24px;border:1px solid var(--ink-18);border-radius:18px;background:var(--color-paper-bright)}
+.lesson-frame--inset strong{font-size:20px}
+.lesson-frame--inset p{max-width:850px;margin:8px 0 0;color:var(--color-muted);font-size:17px;line-height:1.5}
+.lesson-example{margin-top:26px;padding:20px 24px;border:1px solid var(--ink-18);border-radius:18px;background:var(--color-paper-bright)}
+.lesson-example>span{color:var(--color-muted);font-size:15px;font-weight:750}
+.lesson-example p{margin:12px 0 0;color:var(--color-muted);font-size:14px}
+.lesson-content-panel{max-width:980px;padding:24px 28px;border:1px solid var(--ink-18);border-radius:18px;background:var(--color-paper-bright);box-shadow:10px 10px 0 var(--ink-0a)}
+.lesson-content-panel>p{margin:8px 0 0;max-width:900px}
+.lesson-overlay-card{position:absolute;left:4%;bottom:5%;z-index:4;display:grid;gap:5px;max-width:410px;padding:15px 18px;background:var(--color-paper-bright);border:1px solid var(--ink-18);border-radius:14px;box-shadow:0 14px 30px var(--ink-16)}
+.lesson-overlay-card--bottom{left:auto;right:3%}
+.lesson-overlay-card strong{font-size:14px}
+.lesson-overlay-card span{color:var(--color-muted);font-size:13px;line-height:1.4}
+.scene-pipeline .lesson-frame{max-width:1120px}
+.pipeline-map{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.pipeline-map__item{position:relative;min-height:118px;padding:17px 18px;border:1px solid var(--ink-18);border-radius:15px;background:var(--color-paper-bright);display:flex;flex-direction:column;justify-content:center}
+.pipeline-map__item strong{font-size:19px;letter-spacing:-.035em}
+.pipeline-map__item span{margin-top:6px;color:var(--color-muted);font-size:13px;line-height:1.3}
+.pipeline-map__item i{position:absolute;right:-14px;top:50%;z-index:2;color:var(--color-coral-strong);font-style:normal;font-size:20px}
+.scene-pipeline__stage{min-height:64px}
+.scene-pipeline__stage strong{font-size:clamp(17px,2vw,26px)}
+.embedding-stage--immersive{position:relative}
+.embedding-note{margin-top:0}
+.scene-simulation .lesson-title{margin-bottom:22px}
+.scene-simulation .simulation-prompt{margin-bottom:22px}
+.scene-hallucinations .lesson-title{margin-bottom:30px}
+.scene-synthesis .lesson-title{margin-bottom:28px}
+.synthesis-flow span{display:grid;gap:4px}
+.synthesis-flow span b{font-size:clamp(15px,1.8vw,21px)}
+.synthesis-flow span small{color:var(--color-muted);font-size:11px;font-weight:700}
+.synthesis-final--hook{gap:22px}
+.synthesis-final--hook p{max-width:820px;margin:0;color:var(--color-muted);font-size:17px;line-height:1.5}
+@media(max-width:900px){
+  .pipeline-map{grid-template-columns:repeat(2,1fr)}
+  .pipeline-map__item i{display:none}
+  .lesson-grid,.lesson-grid--two{grid-template-columns:1fr}
+  .lesson-overlay-card{position:relative;left:auto;right:auto;bottom:auto;margin:10px 16px 0;max-width:none}
+}
+@media(max-width:800px){
+  .lesson-title{font-size:clamp(34px,9vw,54px)}
+  .lesson-lead{font-size:clamp(27px,7vw,42px)}
+  .lesson-takeaway{font-size:15px}
+}
