@@ -8,6 +8,7 @@ type Props = {
   stepIndex: number;
   totalScenes: number;
   scenes: PresentationScene[];
+  isLastStep: boolean;
   mapOpen: boolean;
   onCloseMap: () => void;
   onSelectScene: (sceneIndex: number) => void;
@@ -20,6 +21,7 @@ export function PresentationShell({
   stepIndex,
   totalScenes,
   scenes,
+  isLastStep,
   mapOpen,
   onCloseMap,
   onSelectScene,
@@ -47,7 +49,7 @@ export function PresentationShell({
       <footer className="presentation__controls" aria-label="Contrôles">
         <span>← / →</span>
         <span>Étape {stepIndex + 1} / {scene.steps}</span>
-        <span>F plein écran · M plan · R rejouer</span>
+        <span>{isLastStep ? "Fin du parcours · → reste ici" : "F plein écran · M plan · R rejouer"}</span>
       </footer>
 
       {mapOpen && (
