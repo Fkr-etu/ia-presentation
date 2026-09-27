@@ -25,7 +25,17 @@ export function AttentionScene({ step }: { step: number }) {
             const targetX = 72 + 7 * 96;
             const y = 286;
             return (
-              <motion.path key={relation.from} d={"M " + x + " " + (y - 24) + " Q " + ((x + targetX) / 2) + " " + (115 - index * 22) + " " + targetX + " " + (y - 24)} className={index === 1 ? "attention-graph__link attention-graph__link--strong" : "attention-graph__link"} style={{ opacity: 0.35 + relation.weight * 0.65 }} initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 0.35 + relation.weight * 0.65 }} transition={{ duration: 0.7, delay: index * 0.12 }} markerEnd="url(#attention-arrow)" />
+              <motion.path
+                key={relation.from}
+                d={"M " + x + " " + (y - 24) + " Q " + ((x + targetX) / 2) + " " + (115 - index * 22) + " " + targetX + " " + (y - 24)}
+                className={index === 1 ? "attention-graph__link attention-graph__link--strong" : "attention-graph__link"}
+                style={{ opacity: 0.35 + relation.weight * 0.65 }}
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 0.35 + relation.weight * 0.65 }}
+                transition={{ duration: 0.7, delay: index * 0.12 }}
+                markerEnd="url(#attention-arrow)"
+              />
+            );
           })}
           {tokens.map((token, index) => {
             const x = 72 + index * 96;
