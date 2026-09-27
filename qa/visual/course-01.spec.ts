@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, type Page } from "@playwright/test";
 
 const scenes = [
   { title: "La question", steps: 3 },
@@ -13,7 +13,7 @@ const scenes = [
   { title: "Du texte à la réponse", steps: 2 },
 ];
 
-async function waitForLayoutStability(page: Parameters<Parameters<typeof test>[1]>[0]["page"]) {
+async function waitForLayoutStability(page: Page) {
   await page.evaluate(() => document.fonts.ready);
   await page.evaluate(
     () =>
