@@ -42,7 +42,7 @@ export function Course01Presentation({ onExit }: { onExit: () => void }) {
       case "synthesis": return <SynthesisScene step={p.state.stepIndex}/>;
     }
   };
-  return <PresentationShell scene={p.scene} sceneIndex={p.state.sceneIndex} stepIndex={p.state.stepIndex} totalScenes={p.scenes.length} scenes={p.scenes} mapOpen={mapOpen} onCloseMap={()=>setMapOpen(false)} onSelectScene={(sceneIndex)=>{p.goToScene(sceneIndex); setMapOpen(false);}}>
+  return <PresentationShell scene={p.scene} sceneIndex={p.state.sceneIndex} stepIndex={p.state.stepIndex} totalScenes={p.scenes.length} scenes={p.scenes} isLastStep={p.isLastStep} mapOpen={mapOpen} onCloseMap={()=>setMapOpen(false)} onSelectScene={(sceneIndex)=>{p.goToScene(sceneIndex); setMapOpen(false);}}>
     <button className="presentation__exit" type="button" onClick={onExit}>Quitter</button>{renderScene()}
   </PresentationShell>;
 }
