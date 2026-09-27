@@ -187,6 +187,8 @@
 
 /* Hallucination and synthesis */
 .scene-hallucinations,.scene-synthesis{width:100%;max-width:1120px}
+.hallucination-verdict{margin:30px 0 0;font-size:clamp(26px,3.2vw,44px);font-weight:900;letter-spacing:-.045em}
+.hallucination-bridge{max-width:850px;margin:12px 0 0;color:var(--color-muted);font-size:clamp(18px,2vw,25px);line-height:1.32}
 .hallucination-question{max-width:1000px;margin:0;font-size:clamp(42px,5.8vw,82px);line-height:.98;letter-spacing:-.065em;font-weight:900}
 .hallucination-answer{display:inline-block;margin-top:42px;padding:20px 26px;background:var(--color-paper-bright);border:2px solid var(--color-ink);border-radius:18px;font-size:clamp(30px,4vw,56px);font-weight:900;letter-spacing:-.05em;box-shadow:12px 12px 0 var(--color-coral-strong)}
 .hallucination-verdict{margin:42px 0 0;font-size:clamp(26px,3.2vw,44px);font-weight:900;letter-spacing:-.045em}
