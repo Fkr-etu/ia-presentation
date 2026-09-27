@@ -111,10 +111,8 @@ test("Course 01 — la navigation ne boucle pas aux bornes", async ({ page }) =>
   await expect(page.locator(".presentation__scene-label")).toHaveText("Le piège du plausible");
   await expect(page.locator(".presentation__controls")).toContainText("Étape 3 / 3");
 
-  await page.keyboard.press("r");
-  await page.keyboard.press("ArrowLeft");
-  await page.keyboard.press("ArrowLeft");
-  await page.keyboard.press("ArrowLeft");
+  await page.keyboard.press("m");
+  await page.getByRole("complementary", { name: "Plan du cours" }).getByRole("button", { name: "La question", exact: true }).click();
   await expect(page.locator(".presentation__scene-label")).toHaveText("La question");
   await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 3");
 
