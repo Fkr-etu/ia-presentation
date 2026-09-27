@@ -83,3 +83,40 @@ test("Course 01 — navigation clavier et plan", async ({ page }) => {
   await page.keyboard.press("ArrowLeft");
   await expect(page.locator(".presentation__scene-label")).toHaveText("Les tokens");
 });
+
+test("Course 01 — la navigation ne boucle pas aux bornes", async ({ page }) => {
+  await page.goto("./");
+  await page.getByRole("article").filter({ hasText: "Comprendre l’IA" }).getByRole("button", { name: /Explorer le cours/i }).click();
+
+  const totalStates = scenes.reduce((total, scene) => total + scene.steps, 0);
+  for (let index = 1; index < totalStates; index += 1) {
+    await page.keyboard.press("ArrowRight");
+  }
+
+  await expect(page.locator(".presentation__scene-label")).toHaveText("Du texte à la réponse");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 2 / 2");
+  await expect(page.locator(".presentation__controls")).toContainText("Fin du parcours");
+
+  for (const key of ["ArrowRight", " ", "Enter"]) {
+    await page.keyboard.press(key);
+    await expect(page.locator(".presentation__scene-label")).toHaveText("Du texte à la réponse");
+    await expect(page.locator(".presentation__controls")).toContainText("Étape 2 / 2");
+  }
+
+  await page.keyboard.press("ArrowLeft");
+  await expect(page.locator(".presentation__scene-label")).toHaveText("Du texte à la réponse");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 2");
+
+  await page.keyboard.press("ArrowLeft");
+  await expect(page.locator(".presentation__scene-label")).toHaveText("Le piège du plausible");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 3 / 3");
+
+  await page.keyboard.press("m");
+  await page.getByRole("complementary", { name: "Plan du cours" }).getByRole("button", { name: "La question", exact: true }).click();
+  await expect(page.locator(".presentation__scene-label")).toHaveText("La question");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 3");
+
+  await page.keyboard.press("ArrowLeft");
+  await expect(page.locator(".presentation__scene-label")).toHaveText("La question");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 3");
+});
