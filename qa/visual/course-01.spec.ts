@@ -23,9 +23,24 @@ async function waitForLayoutStability(page: Page) {
   );
 }
 
-async function getOverflowDiagnostics(page: Parameters<Parameters<typeof test>[1]>[0]["page"]) {
+async function getOverflowDiagnostics(page: Page) {
   return page.evaluate(() => {
     const viewport = { width: window.innerWidth, height: window.innerHeight };
+    const presentation = document.querySelector<HTMLElement>(".presentation");
+    const scene = document.querySelector<HTMLElement>(".presentation__scene");
+    const content = document.querySelector<HTMLElement>(".presentation__scene-content");
+
+    if (!presentation || !scene || !content) {
+      throw new Error("Structure de présentation introuvable");
+    }
+
+    const presentationRect = presentation.getBoundingClientRect();
+    const contentRect = content.getBoundingClientRect();
+    const visualOverflow = {
+      horizontal: Math.max(0, presentationRect.left - contentRect.left, contentRect.right - presentationRect.right),
+      vertical: Math.max(0, presentationRect.top - contentRect.top, contentRect.bottom - presentationRect.bottom),
+    };
+
     const documentMetrics = {
       scrollWidth: document.documentElement.scrollWidth,
       clientWidth: document.documentElement.clientWidth,
@@ -33,27 +48,7 @@ async function getOverflowDiagnostics(page: Parameters<Parameters<typeof test>[1
       clientHeight: document.documentElement.clientHeight,
     };
 
-    const elements = [...document.querySelectorAll(".presentation, .presentation__scene, .presentation__scene-content")]
-      .map((element) => {
-        const rect = element.getBoundingClientRect();
-        return {
-          selector: element.className,
-          rect: {
-            left: Math.round(rect.left * 100) / 100,
-            top: Math.round(rect.top * 100) / 100,
-            right: Math.round(rect.right * 100) / 100,
-            bottom: Math.round(rect.bottom * 100) / 100,
-            width: Math.round(rect.width * 100) / 100,
-            height: Math.round(rect.height * 100) / 100,
-          },
-          scrollWidth: element.scrollWidth,
-          clientWidth: element.clientWidth,
-          scrollHeight: element.scrollHeight,
-          clientHeight: element.clientHeight,
-        };
-      });
-
-    const overflowingChildren = [...document.querySelectorAll(".presentation__scene *")]
+    const overflowingChildren = [...scene.querySelectorAll("*")]
       .map((element) => {
         const rect = element.getBoundingClientRect();
         return {
@@ -63,23 +58,32 @@ async function getOverflowDiagnostics(page: Parameters<Parameters<typeof test>[1
           right: Math.round(rect.right * 100) / 100,
         };
       })
-      .filter(({ bottom, right }) => bottom > viewport.height + 1 || right > viewport.width + 1)
-      .sort((a, b) => Math.max(b.bottom - viewport.height, b.right - viewport.width) - Math.max(a.bottom - viewport.height, a.right - viewport.width))
+      .filter(({ bottom, right }) => bottom > presentationRect.bottom + 1 || right > presentationRect.right + 1)
+      .sort((a, b) => Math.max(b.bottom - presentationRect.bottom, b.right - presentationRect.right) - Math.max(a.bottom - presentationRect.bottom, a.right - presentationRect.right))
       .slice(0, 8);
 
     return {
       viewport,
       documentMetrics,
-      overflow: {
-        horizontal: documentMetrics.scrollWidth - viewport.width,
-        vertical: documentMetrics.scrollHeight - viewport.height,
+      visualOverflow,
+      presentation: {
+        rect: {
+          top: Math.round(presentationRect.top * 100) / 100,
+          bottom: Math.round(presentationRect.bottom * 100) / 100,
+          height: Math.round(presentationRect.height * 100) / 100,
+        },
       },
-      elements,
+      content: {
+        rect: {
+          top: Math.round(contentRect.top * 100) / 100,
+          bottom: Math.round(contentRect.bottom * 100) / 100,
+          height: Math.round(contentRect.height * 100) / 100,
+        },
+      },
       overflowingChildren,
     };
   });
 }
-
 test("Course 01 — parcours visuel complet en 16:9", async ({ page }) => {
   await page.goto("./");
   await page.getByRole("article").filter({ hasText: "Comprendre l’IA" }).getByRole("button", { name: /Explorer le cours/i }).click();
@@ -111,11 +115,11 @@ test("Course 01 — parcours visuel complet en 16:9", async ({ page }) => {
       const diagnostics = await getOverflowDiagnostics(page);
 
       expect(
-        diagnostics.overflow.horizontal,
+        diagnostics.visualOverflow.horizontal,
         `${scene.title} / step ${step}: débordement horizontal — ${JSON.stringify(diagnostics) }`,
       ).toBeLessThanOrEqual(1);
       expect(
-        diagnostics.overflow.vertical,
+        diagnostics.visualOverflow.vertical,
         `${scene.title} / step ${step}: débordement vertical — ${JSON.stringify(diagnostics) }`,
       ).toBeLessThanOrEqual(1);
 
