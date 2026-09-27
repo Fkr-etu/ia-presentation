@@ -10,6 +10,10 @@ export function usePresentation() {
   });
 
   const scene = COURSE_01_SCENES[state.sceneIndex];
+  const isFirstStep = state.sceneIndex === 0 && state.stepIndex === 0;
+  const isLastStep =
+    state.sceneIndex === COURSE_01_SCENES.length - 1 &&
+    state.stepIndex === scene.steps - 1;
 
   const next = useCallback(() => {
     setState((current) => {
@@ -34,8 +38,9 @@ export function usePresentation() {
   const previous = useCallback(() => {
     setState((current) => {
       if (current.stepIndex > 0) return { ...current, stepIndex: current.stepIndex - 1 };
+      if (current.sceneIndex === 0) return current;
 
-      const previousSceneIndex = Math.max(current.sceneIndex - 1, 0);
+      const previousSceneIndex = current.sceneIndex - 1;
       const previousScene = COURSE_01_SCENES[previousSceneIndex];
       return {
         sceneIndex: previousSceneIndex,
@@ -66,5 +71,7 @@ export function usePresentation() {
     previous,
     restart,
     goToScene,
-  }), [state, scene, next, previous, restart, goToScene]);
+    isFirstStep,
+    isLastStep,
+  }), [state, scene, next, previous, restart, goToScene, isFirstStep, isLastStep]);
 }
