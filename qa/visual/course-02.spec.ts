@@ -12,7 +12,7 @@ const scenes = [
   { title: "Le système complet", steps: 3 },
 ];
 
-async function openCourse02(page: Parameters<typeof test>[0]["page"]) {
+async function openCourse02(page: import("@playwright/test").Page) {
   await page.goto("/");
   await page.getByRole("button", { name: /Explorer le cours/ }).nth(1).click();
   await expect(page.getByText("cours.ia / 02")).toBeVisible();
