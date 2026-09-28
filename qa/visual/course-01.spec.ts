@@ -7,7 +7,7 @@ const scenes = [
   { title: "Les embeddings", steps: 5 },
   { title: "L’attention", steps: 4 },
   { title: "Le Transformer", steps: 4 },
-  { title: "La génération", steps: 4 },
+  { title: "La génération", steps: 3 },
   { title: "À vous de jouer", steps: 4 },
   { title: "Le piège du plausible", steps: 3 },
   { title: "Du texte à la réponse", steps: 3 },
