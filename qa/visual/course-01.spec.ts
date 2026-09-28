@@ -1,16 +1,16 @@
 import { test, expect, type Page } from "@playwright/test";
 
 const scenes = [
-  { title: "La question", steps: 3 },
+  { title: "La question", steps: 4 },
   { title: "Le voyage d’une question", steps: 3 },
-  { title: "Les tokens", steps: 2 },
-  { title: "Les embeddings", steps: 4 },
+  { title: "Les tokens", steps: 3 },
+  { title: "Les embeddings", steps: 5 },
   { title: "L’attention", steps: 4 },
-  { title: "Le Transformer", steps: 3 },
+  { title: "Le Transformer", steps: 4 },
   { title: "La génération", steps: 3 },
   { title: "À vous de jouer", steps: 4 },
   { title: "Le piège du plausible", steps: 3 },
-  { title: "Du texte à la réponse", steps: 2 },
+  { title: "Du texte à la réponse", steps: 3 },
 ];
 
 async function waitForLayoutStability(page: Page) {
@@ -136,10 +136,10 @@ test("Course 01 — navigation clavier et plan", async ({ page }) => {
   await page.getByRole("article").filter({ hasText: "Comprendre l’IA" }).getByRole("button", { name: /Explorer le cours/i }).click();
 
   await page.keyboard.press("ArrowRight");
-  await expect(page.locator(".presentation__controls")).toContainText("Étape 2 / 3");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 2 / 4");
 
   await page.keyboard.press("r");
-  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 3");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 4");
 
   await page.keyboard.press("m");
   await expect(page.getByRole("complementary", { name: "Plan du cours" })).toBeVisible();
@@ -153,6 +153,14 @@ test("Course 01 — navigation clavier et plan", async ({ page }) => {
 
   await page.keyboard.press("ArrowLeft");
   await expect(page.locator(".presentation__scene-label")).toHaveText("Les tokens");
+
+  await page.keyboard.press("9");
+  await expect(page.locator(".presentation__scene-label")).toHaveText("Le piège du plausible");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 3");
+
+  await page.keyboard.press("1");
+  await expect(page.locator(".presentation__scene-label")).toHaveText("La question");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 4");
 });
 
 test("Course 01 — la navigation ne boucle pas aux bornes", async ({ page }) => {
@@ -165,18 +173,22 @@ test("Course 01 — la navigation ne boucle pas aux bornes", async ({ page }) =>
   }
 
   await expect(page.locator(".presentation__scene-label")).toHaveText("Du texte à la réponse");
-  await expect(page.locator(".presentation__controls")).toContainText("Étape 2 / 2");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 3 / 3");
   await expect(page.locator(".presentation__controls")).toContainText("Fin du parcours");
 
   for (const key of ["ArrowRight", " ", "Enter"]) {
     await page.keyboard.press(key);
     await expect(page.locator(".presentation__scene-label")).toHaveText("Du texte à la réponse");
-    await expect(page.locator(".presentation__controls")).toContainText("Étape 2 / 2");
+    await expect(page.locator(".presentation__controls")).toContainText("Étape 3 / 3");
   }
 
   await page.keyboard.press("ArrowLeft");
   await expect(page.locator(".presentation__scene-label")).toHaveText("Du texte à la réponse");
-  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 2");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 2 / 3");
+
+  await page.keyboard.press("ArrowLeft");
+  await expect(page.locator(".presentation__scene-label")).toHaveText("Du texte à la réponse");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 3");
 
   await page.keyboard.press("ArrowLeft");
   await expect(page.locator(".presentation__scene-label")).toHaveText("Le piège du plausible");
@@ -185,9 +197,9 @@ test("Course 01 — la navigation ne boucle pas aux bornes", async ({ page }) =>
   await page.keyboard.press("m");
   await page.getByRole("complementary", { name: "Plan du cours" }).getByRole("button", { name: "La question", exact: true }).click();
   await expect(page.locator(".presentation__scene-label")).toHaveText("La question");
-  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 3");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 4");
 
   await page.keyboard.press("ArrowLeft");
   await expect(page.locator(".presentation__scene-label")).toHaveText("La question");
-  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 3");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 4");
 });

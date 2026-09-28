@@ -31,7 +31,7 @@ export function GenerationScene({ step }: { step: number }) {
           <p className="generation-choice__note"><strong>Distribution ≠ choix final.</strong> Une stratégie de décodage détermine le token retenu à partir de cette distribution. Après son ajout, le modèle recommence avec le nouveau contexte.</p>
         </motion.div>
       )}
-      {step === 4 && <div className="lesson-content-panel"><strong>Pourquoi une réponse paraît-elle continue ?</strong><p>Parce que cette boucle est répétée : prédire → retenir un token → l’ajouter au contexte → prédire à nouveau. Une suite de décisions locales produit progressivement un texte cohérent.</p></div>}
+      {step === 3 && <div className="lesson-content-panel"><strong>Pourquoi une réponse paraît-elle continue ?</strong><p>Parce que cette boucle est répétée : prédire → retenir un token → l’ajouter au contexte → prédire à nouveau. Une suite de décisions locales produit progressivement un texte cohérent.</p></div>}
       <div className="lesson-takeaway"><b>À retenir :</b> la génération autoregressive construit la réponse progressivement, token après token.</div>
     </div>
   );

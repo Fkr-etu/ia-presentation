@@ -1,511 +1,480 @@
 # Course 01 — Guide de l’orateur
 
-## Purpose
+## Rôle du guide
 
-This guide is the oral conductor for the 10-scene amphitheater presentation. The slides remain visually sparse; the guide contains what the presenter should explain, the questions to ask, the pedagogical traps to avoid, and the transition to the next state.
+La V2 porte désormais l’essentiel du contenu pédagogique à l’écran. Ce document n’est donc **pas un script à lire** et ne doit pas être nécessaire pour comprendre les notions présentées.
 
-The wording is a conductor, not a text to recite verbatim. The presenter may shorten or expand it depending on the room.
+Le guide sert à piloter l’oral :
 
-## Global rules
+- où ralentir ou faire une pause ;
+- quoi faire observer au groupe ;
+- quelle question poser ;
+- quelle idée souligner à l’oral ;
+- quelle transition préparer ;
+- quels pièges de formulation éviter.
 
-- Start from the audience’s intuition before introducing technical vocabulary.
-- One state should introduce one meaningful idea.
-- Say explicitly when a number, probability, relation, or visualization is illustrative.
-- Distinguish the model’s computation from the surrounding application: retrieval, tools, search, and external data are not part of a bare language model.
-- Avoid saying that the model “understands”, “thinks”, or “knows” in the human sense unless the distinction is made immediately.
-- Keep the central question visible throughout: **what happens between my question and the answer?**
-- Do not overload a state with implementation details that do not serve the mental model.
-
----
-
-## 01 — La question
-
-### Objective
-
-Create the central mystery of the course: what happens between a sentence typed by a person and the generated answer?
-
-### Step 0 — The question appears
-
-**What to say**
-
-> « Imaginez que je demande à une IA : “Explique-moi pourquoi le ciel est bleu comme si j’avais 10 ans.” À première vue, il suffit de poser la question et une réponse apparaît. Mais qu’est-ce qui s’est réellement passé entre ces deux moments ? »
-
-Pause.
-
-> « Pendant cette présentation, on va suivre cette question à l’intérieur d’un modèle de langage. »
-
-### Question to the audience
-
-> « Selon vous, quelle est la toute première chose que le modèle doit faire avec cette phrase ? »
-
-Accept several answers without correcting immediately.
-
-### Step 1 — The question becomes a problem
-
-**What to say**
-
-> « Le piège serait d’imaginer une petite personne à l’intérieur de la machine qui lit la phrase, réfléchit, puis rédige une réponse. Ce n’est pas le bon modèle mental. »
-
-> « Un modèle de langage transforme l’entrée en représentations numériques, calcule des relations et produit progressivement une suite de tokens. »
-
-### Step 2 — Reveal the mental map
-
-**What to say**
-
-> « Voici la carte que nous allons suivre. Elle est volontairement simplifiée : texte, tokens, représentations, relations de contexte, Transformer, probabilités, nouveaux tokens, réponse. »
-
-> « Nous allons maintenant ouvrir chacune de ces boîtes. »
-
-### Step 3 — Establish the central question
-
-**What to say**
-
-> « Retenez une seule question : à chaque étape, qu’est-ce que la machine manipule réellement ? »
-
-### Transition
-
-> « Commençons par le voyage complet, avant de zoomer sur chaque mécanisme. »
+**Principe :** si une phrase est déjà lisible à l’écran, ne la relis pas. Utilise-la comme point d’appui pour faire observer, questionner ou expliquer.
 
 ---
 
-## 02 — Le voyage d’une question
+## Règles d’animation
 
-### Objective
+### 1. Une action = une intention
 
-Give the audience the complete pipeline before studying the mechanisms.
+À chaque pression sur « suivant », identifie l’intention de l’état qui vient d’apparaître : faire observer, révéler, comparer, expliquer ou synthétiser.
 
-### Step 0 — The whole pipeline
+Si deux états successifs provoquent exactement la même prise de parole, le problème est probablement dans la progression de la scène.
 
-**What to say**
+### 2. Ne pas commenter tout ce qui est visible
 
-> « Notre phrase ne passe pas directement de “question” à “réponse”. Il y a plusieurs transformations intermédiaires. »
+L’écran porte les mots-clés, les schémas et les exemples. L’oral apporte surtout :
 
-Point to each block slowly.
+- le contexte ;
+- l’interprétation ;
+- les questions ;
+- les analogies courtes ;
+- les limites des simplifications.
 
-### Step 1 — Zoom into the middle
+### 3. Faire participer sans bloquer le rythme
 
-**What to say**
+Une question destinée à la salle ne doit pas nécessiter une réponse longue. Deux ou trois réponses suffisent avant de poursuivre.
 
-> « Les premières étapes transforment le texte en unités et en nombres. Ensuite, le modèle combine ces représentations en tenant compte du contexte. »
+### 4. Signaler les simplifications
 
-> « Puis il calcule quelles continuations sont plausibles et produit un token. »
+Dire explicitement lorsqu’un chiffre, un poids d’attention, une projection 3D ou une distribution est illustratif.
 
-### Step 2 — Important simplification
+Ne pas présenter le pipeline pédagogique comme une chronologie littérale d’un modèle industriel.
 
-**What to say**
+### 5. Garder trois distinctions
 
-> « Attention : ce schéma est une carte pédagogique, pas une chronologie littérale en huit opérations indépendantes. Dans un vrai Transformer, ces mécanismes sont intégrés et répétés sur plusieurs couches. »
+- token ≠ forcément mot ;
+- représentation numérique ≠ définition humaine du sens ;
+- continuation plausible ≠ information vérifiée.
 
-> « Notre objectif est de construire le bon modèle mental, pas de reproduire le code interne d’un modèle industriel. »
+### 6. Vocabulaire
 
-### Question
-
-> « À votre avis, laquelle de ces étapes va décider directement de ce que l’IA écrit ensuite ? »
-
-### Transition
-
-> « Pour répondre, il faut d’abord comprendre comment le texte est découpé. »
-
----
-
-## 03 — Les tokens
-
-### Objective
-
-Break the intuition that a language model directly manipulates words.
-
-### Step 0 — Tokenization
-
-**What to say**
-
-> « Un modèle de langage ne reçoit pas une phrase sous la forme de mots avec leur signification humaine. Le texte est d’abord découpé en tokens. »
-
-### Step 1 — One word can become several tokens
-
-**What to say**
-
-> « Un token n’est pas forcément un mot. Selon le tokenizer, un mot peut être découpé en plusieurs morceaux, et certains espaces ou signes de ponctuation sont également représentés. »
-
-> « C’est une première traduction entre notre langage et le format manipulé par le modèle. »
-
-### Step 2 — Consequence
-
-**What to say**
-
-> « À partir de maintenant, lorsque nous parlerons de “prochain token”, il ne faut donc pas imaginer uniquement “prochain mot”. »
-
-> « Le modèle va prédire une continuation dans son vocabulaire de tokens. »
-
-### Question
-
-> « Pourquoi ne pas simplement utiliser un dictionnaire de mots entiers ? »
-
-Expected direction: vocabulary size, unknown/new words, flexibility, subword representation.
-
-### Transition
-
-> « Nous avons maintenant des tokens. Mais un token comme “ciel” reste encore un symbole. Comment un réseau neuronal peut-il le manipuler ? »
+Éviter de dire qu’un modèle « pense », « comprend » ou « sait » au sens humain sans préciser immédiatement la métaphore.
 
 ---
 
-## 04 — Les embeddings
+# 01 — La question
 
-### Objective
+**Intention orale :** installer la question centrale sans expliquer trop tôt.
 
-Explain the passage from discrete tokens to learned numerical representations.
+### État 0 — Entrer par la question
 
-### Step 0 — The problem
+Laisser le premier écran quelques secondes.
 
-**What to say**
+**Faire :** regarder la salle, puis demander :
 
-> « Un réseau neuronal calcule avec des nombres. Il faut donc transformer notre token en représentation numérique. »
+> « Qu’est-ce qui se passe entre une phrase que nous tapons et le texte qui apparaît ensuite ? »
 
-### Step 1 — Vector
+Prendre quelques intuitions sans les corriger immédiatement.
 
-**What to say**
+### État 1 — Montrer le point de départ
 
-> « Pour un token donné, le modèle possède une représentation numérique apprise pendant l’entraînement. On peut la visualiser comme un vecteur : une longue liste de nombres. »
+Faire lire ou paraphraser la question affichée.
 
-> « Les valeurs affichées ici sont fictives : elles servent uniquement à rendre l’idée visible. »
+**Insister :** le cours va suivre cette question à l’intérieur d’un modèle de langage.
 
-### Step 2 — Relations
+### État 2 — Montrer la carte
 
-**What to say**
+Ne pas détailler chaque bloc. Parcourir la carte de gauche à droite et annoncer qu’elle servira de fil conducteur.
 
-> « Ces nombres ne sont pas des définitions lisibles par un humain. Ils permettent au réseau de faire des calculs et d’apprendre des régularités à partir des données d’entraînement. »
+**À dire :**
 
-> « Des représentations peuvent ainsi être utiles pour distinguer ou rapprocher certains usages et relations. »
+> « Cette carte est notre modèle mental. Nous allons maintenant ouvrir les boîtes une par une. »
 
-### Step 3 — Visual projection
+### État 3 — Fixer la question directrice
 
-**What to say**
+Faire retenir une seule question :
 
-> « Pour nous aider à voir cette idée, on projette ici un espace de très grande dimension sur une représentation visuelle. »
+> « Qu’est-ce que la machine manipule réellement à cette étape ? »
 
-> « Les mots proches dans cette visualisation ne signifient pas automatiquement qu’ils sont synonymes. La projection est une simplification. »
-
-### Step 4 — Critical distinction
-
-**What to say**
-
-> « Et surtout, nous n’avons pas encore traité le contexte de la phrase. Le token possède une représentation initiale, mais son rôle dans cette phrase dépend des autres tokens. »
-
-> « C’est précisément ce que nous allons étudier avec l’attention. »
-
-### Question
-
-> « Si je prends le mot “banque”, est-ce que sa représentation seule suffit toujours pour savoir de quelle banque je parle ? »
-
-### Transition
-
-> « Non. Il faut regarder autour du mot. »
+**Transition :** passer du panorama au trajet complet.
 
 ---
 
-## 05 — L’attention
+# 02 — Le voyage d’une question
 
-### Objective
+**Intention orale :** donner le panorama avant d’entrer dans les mécanismes.
 
-Make contextual dependency intuitive before discussing technical notation.
+### État 0 — Première moitié du parcours
 
-### Step 0 — Ambiguity
+Pointer rapidement les premiers blocs.
 
-**What to say**
+**Insister :** le texte est converti en unités puis en représentations numériques.
 
-> « Regardons “il”. À quoi renvoie-t-il ? La réponse dépend du reste de la phrase. »
+### État 1 — Deuxième moitié
 
-Let the audience inspect the sentence.
+Montrer que le calcul se poursuit vers une distribution puis vers une continuation.
 
-### Step 1 — Context
+**Question courte :**
 
-**What to say**
+> « À quel moment pensez-vous que le prochain morceau de texte est déterminé ? »
 
-> « Le modèle doit construire une représentation qui tient compte des autres éléments disponibles dans le contexte. »
+Ne pas donner la réponse avant la scène sur la génération.
 
-> « L’attention est l’un des mécanismes qui permettent de pondérer les relations entre positions dans la séquence. »
+### État 2 — Mise en garde
 
-### Step 2 — Illustrative relations
+Faire une pause sur la note de simplification.
 
-**What to say**
+**Insister :** le schéma est une carte pédagogique, pas une liste de huit opérations exécutées isolément.
 
-> « Les liens que vous voyez sont illustratifs. Ils représentent l’idée que toutes les informations du contexte ne contribuent pas de la même manière à la représentation courante. »
+**Transition :**
 
-> « Les valeurs affichées ne sont pas des mesures extraites d’un modèle réel. »
-
-### Step 3 — Prompt context
-
-**What to say**
-
-> « Le contexte ne concerne pas seulement les pronoms. Dans notre question initiale, “comme si j’avais 10 ans” fournit également une information utile : le niveau de formulation attendu. »
-
-> « Le contexte influence donc la représentation et, plus loin, les continuations possibles. »
-
-### Question
-
-> « Si je retire “comme si j’avais 10 ans”, est-ce que vous attendez exactement la même réponse ? »
-
-### Transition
-
-> « Nous avons vu un mécanisme. Mais ce mécanisme n’existe pas seul : il est intégré dans une architecture répétée. »
+> « Pour comprendre le début de ce trajet, commençons par les tokens. »
 
 ---
 
-## 06 — Le Transformer
+# 03 — Les tokens
 
-### Objective
+**Intention orale :** casser l’intuition « le modèle lit des mots ».
 
-Introduce the Transformer as the architecture that repeatedly transforms representations using attention and other operations.
+### État 0 — Découpage
 
-### Step 0 — Architecture
+Faire observer la phrase et ses unités.
 
-**What to say**
+Demander :
 
-> « Le Transformer n’est pas simplement “l’attention”. C’est une architecture qui organise plusieurs opérations de transformation des représentations. »
+> « Où voyez-vous ici quelque chose qui ne correspond pas forcément à un mot entier ? »
 
-### Step 1 — Repeated layers
+### État 1 — Sous-unités
 
-**What to say**
+Faire comprendre qu’un mot peut être découpé en plusieurs tokens.
 
-> « Un modèle réel empile de nombreuses couches. À chaque couche, les représentations sont transformées. »
+**À souligner :** le découpage exact dépend du tokenizer et de son vocabulaire.
 
-> « Pour simplifier, nous montrons ici un bloc conceptuel plutôt que tous les détails mathématiques. »
+### État 2 — Conséquence
 
-### Step 2 — What happens inside
+Faire le lien avec la génération :
 
-**What to say**
+> « Quand nous dirons “prochain token”, pensez donc “prochaine unité du vocabulaire”, pas nécessairement “prochain mot”. »
 
-> « L’attention permet de mélanger de l’information provenant de différentes positions. D’autres opérations transforment ensuite les représentations. Des connexions résiduelles et des mécanismes de normalisation jouent également un rôle dans les architectures Transformer modernes. »
+**Transition :**
 
-### Step 3 — Build intuition
-
-**What to say**
-
-> « L’idée importante n’est donc pas “une énorme base de données de réponses”. Le réseau transforme progressivement une représentation de la séquence pour préparer la prédiction suivante. »
-
-### Question
-
-> « À ce stade, avons-nous encore une réponse écrite ? »
-
-Expected answer: no.
-
-### Transition
-
-> « Exactement. Nous avons préparé les représentations. Il faut maintenant produire quelque chose. »
+> « Nous avons maintenant des tokens. Mais un réseau neuronal doit travailler avec des nombres. »
 
 ---
 
-## 07 — La génération
+# 04 — Les embeddings
 
-### Objective
+**Intention orale :** passer du symbole discret à une représentation numérique sans transformer le vecteur en « définition du mot ».
 
-Explain autoregressive next-token prediction without reducing it to “the most probable word wins”.
+### État 0 — Le problème
 
-### Step 0 — First continuation
+Faire verbaliser :
 
-**What to say**
+> « Que peut faire un réseau neuronal avec le symbole “ciel” ? »
 
-> « Le modèle calcule une distribution sur les tokens qu’il pourrait produire ensuite. »
+Puis introduire la représentation numérique.
 
-> « Nous affichons ici une distribution illustrative : les pourcentages ne proviennent pas d’un modèle réel. »
+### État 1 — Le vecteur
 
-### Step 1 — One token at a time
+Faire observer la liste de nombres.
 
-**What to say**
+**Insister :** les valeurs affichées sont fictives.
 
-> « Une fois un token retenu, il est ajouté au contexte. Le modèle recalcule alors une nouvelle distribution pour la suite. »
+Ne pas lire les nombres à voix haute.
 
-> « La réponse est donc construite progressivement. »
+### État 2 — Projection
 
-### Step 2 — Context changes
+Laisser la visualisation 3D apparaître avant de l’expliquer.
 
-**What to say**
+**À dire :**
 
-> « Chaque nouveau token devient à son tour une partie du contexte. La distribution du prochain token peut donc changer. »
+> « Ce que nous voyons est une projection pédagogique d’un espace beaucoup plus grand. »
 
-### Step 3 — Decoding
+### État 3 — Relations visibles
 
-**What to say**
+Faire observer le regroupement sans dire « ces mots ont le même sens ».
 
-> « Il faut également distinguer la distribution produite par le modèle de la stratégie qui choisit le token final. Selon les paramètres et la stratégie de décodage, on peut sélectionner différemment parmi les candidats. »
+**Formulation sûre :**
 
-### Step 4 — The key mental model
+> « Cette projection permet de rendre certaines relations visibles, mais elle ne constitue pas une carte exacte du sens. »
 
-**What to say**
+### État 4 — Limite de l’embedding initial
 
-> « Le modèle ne rédige pas d’abord toute la réponse dans une boîte cachée. Il produit une continuation, puis une nouvelle continuation, et ainsi de suite. »
+Faire le lien avec la scène suivante :
 
-> « C’est cette répétition qui donne l’impression d’un texte continu. »
+> « Une représentation initiale ne suffit pas encore à déterminer le rôle du token dans cette phrase. »
 
-### Question
+**Question :**
 
-> « Si le modèle prédit le prochain token, d’où vient alors la cohérence sur plusieurs phrases ? »
+> « Si je vous donne seulement le mot “banque”, avez-vous toujours assez d’informations pour savoir de quelle banque il s’agit ? »
 
-Use this as a bridge to context, learned patterns, and repeated prediction.
-
-### Transition
-
-> « Maintenant que nous avons le mécanisme général, faisons-le vivre devant vous. »
+**Transition :** contexte → attention.
 
 ---
 
-## 08 — À vous de jouer
+# 05 — L’attention
 
-### Objective
+**Intention orale :** rendre la dépendance au contexte intuitive avant toute formulation technique.
 
-Make the audience reason about next-token prediction without requiring a student UI.
+### État 0 — Ambiguïté
 
-### Step 0 — Audience participation
+Faire regarder « il ».
 
-**What to say**
+Demander :
 
-> « Je vous donne la phrase : “Le ciel est souvent…” Quelle continuation vous paraît la plus plausible ? »
+> « À quoi renvoie-t-il ? Qu’est-ce qui vous permet de le décider ? »
 
-Take a few answers verbally.
+### État 1 — Mécanisme
 
-### Step 1 — Reveal distribution
+Nommer l’attention comme mécanisme de contextualisation.
 
-**What to say**
+Ne pas introduire les matrices Q/K/V ici : ce n’est pas nécessaire pour l’objectif de cette scène.
 
-> « Le modèle ne reçoit pas directement votre intuition humaine. Il produit une distribution sur les tokens candidats. »
+### État 2 — Relations illustratives
 
-> « Les chiffres sont illustratifs : ce qui nous intéresse est la compétition entre plusieurs continuations possibles. »
+Faire observer les liens.
 
-### Step 2 — Bad candidate
+**Préciser :** les poids sont illustratifs et ne proviennent pas d’un modèle réel.
 
-**What to say**
+### État 3 — Contexte de la demande
 
-> « “Voiture” est possible comme token au sens technique, mais dans ce contexte il est beaucoup moins compatible avec les régularités apprises que “bleu”, par exemple. »
+Revenir à la question du début.
 
-Avoid saying impossible unless the model's probability is actually zero.
+Faire remarquer que « comme si j’avais 10 ans » ajoute une contrainte de style et de niveau.
 
-### Step 3 — New context
+**Question :**
 
-**What to say**
+> « Si on retire cette partie, vous attendez exactement la même réponse ? »
 
-> « Ajoutons un token. Maintenant, le contexte a changé. Le modèle recommence le calcul avec cette nouvelle séquence. »
+**Transition :**
 
-> « C’est ce processus répété qui produit la réponse token après token. »
-
-### Transition
-
-> « Mais une réponse fluide et cohérente en apparence nous garantit-elle qu’elle est vraie ? »
+> « L’attention est un mécanisme. Voyons maintenant l’architecture qui l’intègre et la répète. »
 
 ---
 
-## 09 — Le piège du plausible
+# 06 — Le Transformer
 
-### Objective
+**Intention orale :** faire comprendre « architecture » plutôt que « attention = Transformer ».
 
-Separate linguistic fluency from factual verification.
+### État 0 — Architecture
 
-### Step 0 — False premise
+Faire formuler la distinction :
 
-**What to say**
+> « Le Transformer n’est donc pas simplement un autre mot pour attention. »
 
-> « Voici une question construite avec une prémisse fausse. Regardez ce qui se passe si l’on demande malgré tout une réponse détaillée. »
+### État 1 — Répétition
 
-### Step 1 — Plausibility
+Pointer les couches.
 
-**What to say**
+**Insister :** un modèle réel comporte de nombreuses couches ; l’écran montre un bloc conceptuel.
 
-> « Un modèle de langage peut produire une continuation linguistiquement plausible même lorsque la question repose sur une information fausse ou inexistante. »
+### État 2 — Opérations internes
 
-> « Le fait qu’une réponse soit fluide ne constitue donc pas une preuve de vérité. »
+Mentionner brièvement :
 
-### Step 2 — How to respond responsibly
+- attention ;
+- transformations neuronales ;
+- connexions résiduelles ;
+- normalisation.
 
-**What to say**
+Ne pas ouvrir un détour mathématique.
 
-> « Face à une question factuelle importante, on peut apporter des sources, utiliser une recherche ou un outil externe, et vérifier l’information. »
+### État 3 — Intuition finale
 
-> « Le modèle de langage et le système qui l’entoure ne sont pas nécessairement la même chose. »
+Poser :
 
-### Question
+> « À ce stade, avons-nous déjà écrit la réponse ? »
 
-> « Quelle différence faites-vous maintenant entre “le modèle peut produire une réponse” et “nous pouvons faire confiance à cette réponse” ? »
+Laisser la salle répondre.
 
-### Transition
+**Transition :**
 
-> « Nous pouvons maintenant remettre toutes les pièces du puzzle ensemble. »
+> « Non. Nous avons transformé les représentations. Il faut maintenant produire le prochain token. »
 
 ---
 
-## 10 — Tout remettre ensemble
+# 07 — La génération
 
-### Objective
+**Intention orale :** installer le modèle mental autorégressif.
 
-Consolidate the mental model and leave the audience with three durable ideas.
+### État 0 — Contexte courant
 
-### Step 0 — Full pipeline
+Faire observer que le modèle travaille avec la séquence déjà disponible.
 
-**What to say**
+### État 1 — Prédiction
 
-> « Revenons à notre question de départ. Nous pouvons maintenant suivre son parcours : texte, tokens, représentations, contexte, transformations, distribution de probabilités, puis génération de nouveaux tokens. »
+Faire apparaître l’idée de distribution.
 
-### Step 1 — Three messages
+**Insister :** les pourcentages sont illustratifs.
 
-**What to say**
+### État 2 — Distribution et boucle
 
-> « Premier message : un modèle de langage manipule des représentations numériques, pas directement nos concepts humains. »
+Faire verbaliser la boucle :
 
-> « Deuxième message : le contexte joue un rôle central dans la représentation et la prédiction. »
+> « prédire → retenir un token → l’ajouter au contexte → recommencer ».
 
-> « Troisième message : générer une réponse plausible et vérifier qu’elle est vraie sont deux problèmes différents. »
+Puis faire la distinction entre la distribution et le décodage :
 
-### Step 2 — Final question
+> « La distribution est produite par le modèle ; la stratégie de décodage détermine ensuite comment un token est retenu. »
 
-**What to say**
+Éviter « le modèle choisit toujours le plus probable ».
+
+### État 3 — Le texte continu
+
+Faire observer que la boucle est répétée.
+
+**Phrase clé :**
+
+> « Une suite de décisions locales peut progressivement produire un texte continu. »
+
+**Transition :**
+
+> « Nous avons le mécanisme. Maintenant, faisons-le raisonner avec nous. »
+
+---
+
+# 08 — À vous de jouer
+
+**Intention orale :** transformer la génération en exercice mental très court.
+
+### État 0 — Faire voter la salle
+
+Question :
+
+> « Le ciel est souvent… ? »
+
+Prendre quelques réponses à voix haute.
+
+### État 1 — Révéler la distribution
+
+Faire comparer l’intuition humaine et la distribution affichée.
+
+**Insister :** les valeurs sont illustratives.
+
+### État 2 — Mauvais candidat
+
+Utiliser « voiture » pour montrer qu’un candidat peut être techniquement possible sans être adapté au contexte.
+
+Éviter de dire « impossible ».
+
+### État 3 — Boucle
+
+Faire le geste mental d’ajouter le token au contexte.
+
+**Phrase clé :**
+
+> « Le calcul recommence avec une séquence légèrement différente. »
+
+**Transition :**
+
+> « Une suite de continuations plausibles produit-elle pour autant des faits vrais ? »
+
+---
+
+# 09 — Le piège du plausible
+
+**Intention orale :** séparer fluidité linguistique et vérification factuelle.
+
+### État 0 — Prémisse
+
+Laisser la salle examiner la question.
+
+Demander :
+
+> « Quel est le problème avec cette question avant même de regarder la réponse ? »
+
+### État 1 — Réponse plausible
+
+Faire constater que la fluidité ne garantit rien sur la prémisse.
+
+**Insister :**
+
+> « Une réponse bien formulée n’est pas une preuve. »
+
+### État 2 — Vérification
+
+Faire passer du modèle à l’usage responsable :
+
+- source ;
+- recherche ;
+- outil externe ;
+- vérification lorsque l’enjeu le justifie.
+
+**Transition :**
+
+> « Revenons maintenant à notre question initiale et remettons toutes les pièces ensemble. »
+
+---
+
+# 10 — Tout remettre ensemble
+
+**Intention orale :** consolider le modèle mental, pas introduire une nouvelle notion.
+
+### État 0 — Parcours complet
+
+Faire suivre la chaîne du doigt, sans relire chaque libellé.
+
+**Question :**
+
+> « Si je vous donne une nouvelle question, quelles sont les grandes familles d’étapes que vous vous attendez à retrouver ? »
+
+### État 1 — Les trois idées
+
+Faire retenir les trois messages :
+
+1. le modèle manipule des représentations numériques ;
+2. le contexte influence les représentations et les continuations ;
+3. une continuation plausible n’est pas une vérification de vérité.
+
+Ne pas ajouter de nouvelle notion technique.
+
+### État 2 — Ouverture
+
+Poser la question finale :
 
 > « Alors, une IA pense-t-elle comme nous ? »
 
-Pause.
+Laisser la question ouverte.
 
-> « Nous avons maintenant assez d’éléments pour éviter une réponse trop simple. Un modèle de langage effectue des transformations numériques complexes et produit des continuations très sophistiquées. Mais cela ne signifie pas qu’il fonctionne comme une pensée humaine. »
+**Pont vers la suite :**
 
-### Final hook
-
-> « Et si le modèle seul ne suffit pas toujours, comment peut-on lui donner accès à des documents, à une recherche, à des outils ou à des actions ? C’est la suite logique de notre cours. »
+> « La prochaine question devient alors : que faut-il ajouter à un LLM pour travailler avec des sources, des documents, des outils ou des actions externes ? »
 
 ---
 
-## Questions fréquentes à préparer
+## Questions fréquentes — réponses courtes
 
-### « Est-ce qu’un token est un mot ? »
+### « Un token est-il un mot ? »
 
-Non. Un token peut correspondre à un mot, une partie de mot, un signe ou une autre unité définie par le tokenizer.
+Non. Un token peut être un mot, une partie de mot, un signe ou une autre unité définie par le tokenizer.
 
-### « Est-ce que les embeddings donnent le sens d’un mot ? »
+### « Un embedding contient-il le sens d’un mot ? »
 
-Pas sous la forme d’une définition humaine. Ils fournissent une représentation numérique apprise, utile aux calculs du réseau.
+Pas sous la forme d’une définition humaine. Il s’agit d’une représentation numérique apprise, utilisée par le réseau pour effectuer ses calculs.
 
-### « Est-ce que l’attention regarde seulement le mot précédent ? »
+### « L’attention regarde-t-elle seulement le mot précédent ? »
 
-Non. Dans un Transformer, l’attention permet de mettre en relation différentes positions accessibles dans le contexte, selon l’architecture et le type de masque utilisé.
+Non. Elle permet de mettre en relation différentes positions accessibles dans le contexte, selon l’architecture et le masque utilisé.
 
-### « Est-ce que le modèle choisit toujours le token le plus probable ? »
+### « Le modèle choisit-il toujours le token le plus probable ? »
 
-Pas nécessairement. La distribution de probabilités et la stratégie de décodage sont deux choses différentes.
+Non. La distribution produite par le modèle et la stratégie de décodage sont deux choses distinctes.
 
-### « Pourquoi une IA peut-elle halluciner ? »
+### « Pourquoi une réponse peut-elle être fausse tout en étant fluide ? »
 
-Parce que produire une continuation linguistiquement plausible et établir la vérité d’une affirmation sont deux problèmes différents. Des outils de recherche, des sources ou des mécanismes de vérification peuvent compléter le modèle.
+Parce que la génération d’une continuation plausible et la vérification d’un fait sont deux problèmes différents.
 
-### « Est-ce que les visualisations 3D des embeddings sont réelles ? »
+### « La visualisation 3D des embeddings est-elle réelle ? »
 
-Elles sont pédagogiques. Les représentations réelles vivent dans des espaces de beaucoup plus grandes dimensions ; une visualisation 3D est une projection ou une métaphore visuelle.
+Elle est pédagogique. Les représentations réelles vivent dans des espaces de grande dimension ; l’écran montre une projection.
 
 ### « Le Transformer est-il seulement de l’attention ? »
 
-Non. L’attention est un mécanisme important du Transformer, mais l’architecture comprend également d’autres transformations, notamment les blocs feed-forward, les connexions résiduelles et la normalisation.
+Non. L’attention est un mécanisme important, mais l’architecture comprend également d’autres transformations, notamment des blocs feed-forward, des connexions résiduelles et de la normalisation.
 
 ---
 
-## Timing indicatif
+## Rythme indicatif
 
-| Scene | Duration |
+| Scène | Durée indicative |
 |---|---:|
 | 01 — La question | 2 min |
-| 02 — Le voyage | 4 min |
+| 02 — Le voyage d’une question | 4 min |
 | 03 — Les tokens | 4 min |
 | 04 — Les embeddings | 7 min |
 | 05 — L’attention | 7 min |
@@ -513,9 +482,13 @@ Non. L’attention est un mécanisme important du Transformer, mais l’architec
 | 07 — La génération | 6 min |
 | 08 — À vous de jouer | 5 min |
 | 09 — Le piège du plausible | 4 min |
-| 10 — Synthèse | 4 min |
+| 10 — Tout remettre ensemble | 4 min |
 | **Total** | **≈ 48 min** |
 
-## Presenter rule
+## Règle finale pour l’orateur
 
-The presenter should not read the guide verbatim. The guide guarantees the pedagogical sequence, the terminology, the caveats, and the transitions; the spoken delivery should remain natural and responsive to the room.
+Le guide sert à **animer** la présentation, pas à la faire fonctionner.
+
+Si l’orateur retire ce document, le public doit toujours pouvoir comprendre les concepts essentiels en lisant et en observant les écrans.
+
+Le guide apporte ce que l’écran ne peut pas porter seul : rythme, questions, réactions à la salle, transitions et vigilance sur les simplifications.
