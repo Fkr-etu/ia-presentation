@@ -1,16 +1,16 @@
 import { test, expect, type Page } from "@playwright/test";
 
 const scenes = [
-  { title: "La question", steps: 3 },
+  { title: "La question", steps: 4 },
   { title: "Le voyage d’une question", steps: 3 },
-  { title: "Les tokens", steps: 2 },
-  { title: "Les embeddings", steps: 4 },
+  { title: "Les tokens", steps: 3 },
+  { title: "Les embeddings", steps: 5 },
   { title: "L’attention", steps: 4 },
-  { title: "Le Transformer", steps: 3 },
-  { title: "La génération", steps: 3 },
+  { title: "Le Transformer", steps: 4 },
+  { title: "La génération", steps: 4 },
   { title: "À vous de jouer", steps: 4 },
   { title: "Le piège du plausible", steps: 3 },
-  { title: "Du texte à la réponse", steps: 2 },
+  { title: "Du texte à la réponse", steps: 3 },
 ];
 
 async function waitForLayoutStability(page: Page) {
@@ -153,6 +153,14 @@ test("Course 01 — navigation clavier et plan", async ({ page }) => {
 
   await page.keyboard.press("ArrowLeft");
   await expect(page.locator(".presentation__scene-label")).toHaveText("Les tokens");
+
+  await page.keyboard.press("9");
+  await expect(page.locator(".presentation__scene-label")).toHaveText("Le piège du plausible");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 3");
+
+  await page.keyboard.press("1");
+  await expect(page.locator(".presentation__scene-label")).toHaveText("La question");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 4");
 });
 
 test("Course 01 — la navigation ne boucle pas aux bornes", async ({ page }) => {
