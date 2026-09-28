@@ -136,10 +136,10 @@ test("Course 01 — navigation clavier et plan", async ({ page }) => {
   await page.getByRole("article").filter({ hasText: "Comprendre l’IA" }).getByRole("button", { name: /Explorer le cours/i }).click();
 
   await page.keyboard.press("ArrowRight");
-  await expect(page.locator(".presentation__controls")).toContainText("Étape 2 / 3");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 2 / 4");
 
   await page.keyboard.press("r");
-  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 3");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 4");
 
   await page.keyboard.press("m");
   await expect(page.getByRole("complementary", { name: "Plan du cours" })).toBeVisible();
@@ -173,18 +173,18 @@ test("Course 01 — la navigation ne boucle pas aux bornes", async ({ page }) =>
   }
 
   await expect(page.locator(".presentation__scene-label")).toHaveText("Du texte à la réponse");
-  await expect(page.locator(".presentation__controls")).toContainText("Étape 2 / 2");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 3 / 3");
   await expect(page.locator(".presentation__controls")).toContainText("Fin du parcours");
 
   for (const key of ["ArrowRight", " ", "Enter"]) {
     await page.keyboard.press(key);
     await expect(page.locator(".presentation__scene-label")).toHaveText("Du texte à la réponse");
-    await expect(page.locator(".presentation__controls")).toContainText("Étape 2 / 2");
+    await expect(page.locator(".presentation__controls")).toContainText("Étape 3 / 3");
   }
 
   await page.keyboard.press("ArrowLeft");
   await expect(page.locator(".presentation__scene-label")).toHaveText("Du texte à la réponse");
-  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 2");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 2 / 3");
 
   await page.keyboard.press("ArrowLeft");
   await expect(page.locator(".presentation__scene-label")).toHaveText("Le piège du plausible");
