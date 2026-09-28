@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 type Actions = {
   next: () => void;
@@ -11,6 +11,9 @@ type Actions = {
 };
 
 export function usePresentationKeyboard(actions: Actions) {
+  const actionsRef = useRef(actions);
+  actionsRef.current = actions;
+
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (
@@ -18,24 +21,26 @@ export function usePresentationKeyboard(actions: Actions) {
         event.target instanceof HTMLTextAreaElement
       ) return;
 
+      const current = actionsRef.current;
+
       switch (event.key) {
         case "ArrowRight":
         case " ":
         case "Enter":
           event.preventDefault();
-          actions.next();
+          current.next();
           break;
         case "ArrowLeft":
           event.preventDefault();
-          actions.previous();
+          current.previous();
           break;
         case "r":
         case "R":
-          actions.restart();
+          current.restart();
           break;
         case "m":
         case "M":
-          actions.toggleMap();
+          current.toggleMap();
           break;
         case "1":
         case "2":
@@ -46,14 +51,14 @@ export function usePresentationKeyboard(actions: Actions) {
         case "7":
         case "8":
         case "9":
-          actions.goToScene(Number(event.key) - 1);
+          current.goToScene(Number(event.key) - 1);
           break;
         case "f":
         case "F":
-          actions.toggleFullscreen();
+          current.toggleFullscreen();
           break;
         case "Escape":
-          actions.exit();
+          current.exit();
           break;
         default:
           break;
@@ -62,5 +67,5 @@ export function usePresentationKeyboard(actions: Actions) {
 
     window.addEventListener("keydown", onKeyDown, { capture: true });
     return () => window.removeEventListener("keydown", onKeyDown, { capture: true });
-  }, [actions]);
+  }, []);
 }
