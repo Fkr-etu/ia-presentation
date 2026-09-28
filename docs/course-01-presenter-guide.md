@@ -77,13 +77,13 @@ Faire lire ou paraphraser la question affichée.
 
 **Insister :** le cours va suivre cette question à l’intérieur d’un modèle de langage.
 
-### État 2 — Montrer la carte
+### État 2 — Montrer le parcours en une vue
 
-Ne pas détailler chaque bloc. Parcourir la carte de gauche à droite et annoncer qu’elle servira de fil conducteur.
+Ne pas détailler chaque mécanisme. Faire suivre les trois phases : transformer, contextualiser, générer.
 
 **À dire :**
 
-> « Cette carte est notre modèle mental. Nous allons maintenant ouvrir les boîtes une par une. »
+> « Cette vue nous donne le fil conducteur. Nous allons maintenant ouvrir chaque phase pour voir ce que le modèle manipule réellement. »
 
 ### État 3 — Fixer la question directrice
 
