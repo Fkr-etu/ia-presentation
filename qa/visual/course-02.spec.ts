@@ -30,6 +30,9 @@ test.describe("Course 02 — RAG, MCP, harnais et loop", () => {
     await expect(page.getByText("Étape 2 / 3")).toBeVisible();
 
     await page.keyboard.press("ArrowRight");
+    await expect(page.getByText("Étape 3 / 3")).toBeVisible();
+
+    await page.keyboard.press("ArrowRight");
     await expect(page.locator(".presentation__scene-label")).toHaveText(scenes[1].title);
     await expect(page.getByText("Étape 1 / 5")).toBeVisible();
   });
