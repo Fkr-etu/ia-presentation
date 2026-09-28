@@ -23,13 +23,15 @@ async function openCourse02(page: import("@playwright/test").Page) {
 test.describe("Course 02 — RAG, MCP, harnais et loop", () => {
   test("ouvre le cours et respecte les contrats de scènes", async ({ page }) => {
     await openCourse02(page);
-    expect(await page.locator(".presentation__scene-label").textContent()).toBe(scenes[0].title);
-    expect(await page.getByText("Étape 1 / 3").count()).toBe(1);
+    await expect(page.locator(".presentation__scene-label")).toHaveText(scenes[0].title);
+    await expect(page.getByText("Étape 1 / 3")).toBeVisible();
+
     await page.keyboard.press("ArrowRight");
-    expect(await page.getByText("Étape 2 / 3").count()).toBe(1);
+    await expect(page.getByText("Étape 2 / 3")).toBeVisible();
+
     await page.keyboard.press("ArrowRight");
     await expect(page.locator(".presentation__scene-label")).toHaveText(scenes[1].title);
-    expect(await page.getByText("Étape 1 / 5").count()).toBe(1);
+    await expect(page.getByText("Étape 1 / 5")).toBeVisible();
   });
 
   test("le plan et les raccourcis permettent de rejoindre les scènes", async ({ page }) => {
