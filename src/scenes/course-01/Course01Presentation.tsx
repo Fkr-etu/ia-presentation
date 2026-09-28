@@ -20,7 +20,7 @@ export function Course01Presentation({ onExit }: { onExit: () => void }) {
     if (!document.fullscreenElement) await document.documentElement.requestFullscreen();
     else await document.exitFullscreen();
   }, []);
-  usePresentationKeyboard({ next:p.next, previous:p.previous, restart:p.restart, toggleMap:()=>setMapOpen(v=>!v), toggleFullscreen, exit:onExit });
+  usePresentationKeyboard({ next:p.next, previous:p.previous, restart:p.restart, goToScene:p.goToScene, toggleMap:()=>setMapOpen(v=>!v), toggleFullscreen, exit:onExit });
 
   useEffect(() => {
     document.body.dataset.presentation = "true";
