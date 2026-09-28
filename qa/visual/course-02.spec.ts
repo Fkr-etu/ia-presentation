@@ -14,7 +14,9 @@ const scenes = [
 
 async function openCourse02(page: import("@playwright/test").Page) {
   await page.goto("/");
-  await page.getByText("Construire un système IA").click();
+  const course = page.locator(".course-card").filter({ hasText: "Construire un système IA" });
+  await expect(course).toBeVisible();
+  await course.getByRole("button", { name: /Explorer le cours/ }).click();
   await expect(page.getByText("cours.ia / 02")).toBeVisible();
 }
 
