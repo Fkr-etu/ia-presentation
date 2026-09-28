@@ -302,21 +302,27 @@ Faire apparaître l’idée de distribution.
 
 **Insister :** les pourcentages sont illustratifs.
 
-### État 2 — Boucle
+### État 2 — Distribution et boucle
 
 Faire verbaliser la boucle :
 
 > « prédire → retenir un token → l’ajouter au contexte → recommencer ».
 
-### État 3 — Décodage
-
-Faire une distinction nette :
+Puis faire la distinction entre la distribution et le décodage :
 
 > « La distribution est produite par le modèle ; la stratégie de décodage détermine ensuite comment un token est retenu. »
 
 Éviter « le modèle choisit toujours le plus probable ».
 
-### Transition
+### État 3 — Le texte continu
+
+Faire observer que la boucle est répétée.
+
+**Phrase clé :**
+
+> « Une suite de décisions locales peut progressivement produire un texte continu. »
+
+**Transition :**
 
 > « Nous avons le mécanisme. Maintenant, faisons-le raisonner avec nous. »
 
