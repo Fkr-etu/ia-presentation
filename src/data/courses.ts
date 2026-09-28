@@ -23,9 +23,9 @@ export const courses: Course[] = [
   {
     id: "ia-generative",
     number: "02",
-    title: "L’IA générative",
-    description: "Comment une machine produit du texte, des images, du son et du code.",
-    level: "Débutant",
+    title: "Construire un système IA",
+    description: "RAG, MCP, harnais, boucle, observabilité et sécurité : passer du modèle au système.",
+    level: "Intermédiaire",
     duration: "45 min",
     accent: "blue",
     visual: "02",

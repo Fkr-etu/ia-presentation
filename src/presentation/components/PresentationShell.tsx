@@ -13,6 +13,8 @@ type Props = {
   onCloseMap: () => void;
   onSelectScene: (sceneIndex: number) => void;
   children: ReactNode;
+  courseNumber?: string;
+  courseLabel?: string;
 };
 
 export function PresentationShell({
@@ -26,12 +28,14 @@ export function PresentationShell({
   onCloseMap,
   onSelectScene,
   children,
+  courseNumber = "01",
+  courseLabel = "cours.ia / 01",
 }: Props) {
   return (
-    <main className="presentation" aria-label="Présentation du cours 01">
+    <main className="presentation" aria-label={`Présentation du cours ${courseNumber}`}>
       <div className="presentation__grain" aria-hidden="true" />
       <header className="presentation__topbar">
-        <span>cours.ia / 01</span>
+        <span>{courseLabel}</span>
         <span>{String(sceneIndex + 1).padStart(2, "0")} / {String(totalScenes).padStart(2, "0")}</span>
       </header>
 
@@ -57,7 +61,7 @@ export function PresentationShell({
           <div className="presentation__map-head">
             <div>
               <span className="presentation__map-title">Le parcours</span>
-              <span>10 scènes · 1 idée à la fois</span>
+              <span>{totalScenes} scènes · 1 idée à la fois</span>
             </div>
             <button type="button" onClick={onCloseMap} aria-label="Fermer le plan">×</button>
           </div>
