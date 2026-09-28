@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { courses } from "./data/courses";
 import { Course01Presentation } from "./scenes/course-01/Course01Presentation";
+import { Course02Presentation } from "./scenes/course-02/Course02Presentation";
 
 function CourseCard({ course, onOpen }: { course: (typeof courses)[number]; onOpen: (id: string) => void }) {
   return (
@@ -29,6 +30,8 @@ function Home({ onOpen }: { onOpen: (id: string) => void }) {
 }
 
 export default function App() {
-  const [presentation, setPresentation] = useState(false);
-  return presentation ? <Course01Presentation onExit={() => setPresentation(false)} /> : <Home onOpen={(id) => id === "ia-fondamentaux" ? setPresentation(true) : undefined} />;
+  const [presentation, setPresentation] = useState<"01" | "02" | null>(null);
+  if (presentation === "01") return <Course01Presentation onExit={() => setPresentation(null)} />;
+  if (presentation === "02") return <Course02Presentation onExit={() => setPresentation(null)} />;
+  return <Home onOpen={(id) => { if (id === "ia-fondamentaux") setPresentation("01"); if (id === "ia-generative") setPresentation("02"); }} />;
 }
