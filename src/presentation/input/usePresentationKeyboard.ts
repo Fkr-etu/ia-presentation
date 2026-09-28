@@ -42,6 +42,10 @@ export function usePresentationKeyboard(actions: Actions) {
         case "M":
           current.toggleMap();
           break;
+        case "0":
+          event.preventDefault();
+          current.goToScene(9);
+          break;
         case "1":
         case "2":
         case "3":
@@ -51,6 +55,7 @@ export function usePresentationKeyboard(actions: Actions) {
         case "7":
         case "8":
         case "9":
+          event.preventDefault();
           current.goToScene(Number(event.key) - 1);
           break;
         case "f":
