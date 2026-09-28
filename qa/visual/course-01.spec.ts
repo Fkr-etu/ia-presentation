@@ -187,6 +187,10 @@ test("Course 01 — la navigation ne boucle pas aux bornes", async ({ page }) =>
   await expect(page.locator(".presentation__controls")).toContainText("Étape 2 / 3");
 
   await page.keyboard.press("ArrowLeft");
+  await expect(page.locator(".presentation__scene-label")).toHaveText("Du texte à la réponse");
+  await expect(page.locator(".presentation__controls")).toContainText("Étape 1 / 3");
+
+  await page.keyboard.press("ArrowLeft");
   await expect(page.locator(".presentation__scene-label")).toHaveText("Le piège du plausible");
   await expect(page.locator(".presentation__controls")).toContainText("Étape 3 / 3");
 
