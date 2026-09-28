@@ -152,7 +152,7 @@ export function EmbeddingSpace3D({ step }: { step: number }) {
         });
 
         lines.children.forEach((line) => {
-          const material = line.material as import("three").LineBasicMaterial;
+          const material = (line as import("three").Line).material as import("three").LineBasicMaterial;
           material.opacity = 0.28 * easedReveal;
         });
 
@@ -171,7 +171,7 @@ export function EmbeddingSpace3D({ step }: { step: number }) {
           if (resource.geometry) resource.geometry.dispose();
           const material = resource.material;
           const disposeMaterial = (item: import("three").Material) => {
-            const map = "map" in item ? item.map : null;
+            const map = (item as import("three").Material & { map?: import("three").Texture | null }).map;
             map?.dispose();
             item.dispose();
           };
